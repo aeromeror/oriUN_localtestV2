@@ -8,55 +8,57 @@ import javax.persistence.*;
 public class UserModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    private int ID_USER;
-
-    private int ID_ROL;
-    @Column(columnDefinition="text")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition="text", unique = true, nullable = false)
     private String USER_NAME;
+
+    @Column(columnDefinition="text")
+    private String ROL_NAME;
     @Column(columnDefinition="text")
     private String PASSWORD;
+
+    private String TOKEN;
+
     public UserModel() {
     }
 
-    public UserModel(int id, int id_rol, String user_name, String password) {
-        this.ID_USER = id;
-        this.ID_ROL = id_rol;
+    public UserModel(String user_name,String rol_name, String password) {
         this.USER_NAME = user_name;
+        this.ROL_NAME = rol_name;
         this.PASSWORD = password;
     }
-    public void setPassword(String PASSWORD){
-        this.PASSWORD = PASSWORD;
-    }
 
-    public String getPassword(){
-        return PASSWORD;
-    }
-
-    public int getId() {
-        return ID_USER;
-    }
-
-    public void setId(int id) {
-        this.ID_USER = id;
-        
-    }
-
-    public String getName() {
+    public String getUSER_NAME() {
         return USER_NAME;
     }
 
-    public void setName(String name) {
-        this.USER_NAME = name;
+    public void setUSER_NAME(String USER_NAME) {
+        this.USER_NAME = USER_NAME;
     }
 
-    public int getRol() {
-        return ID_ROL;
+    public String getROL_NAME() {
+        return ROL_NAME;
     }
 
-    public void setRol(int rol) {
-        this.ID_ROL = rol;
+    public void setROL_NAME(String ROL_NAME) {
+        this.ROL_NAME = ROL_NAME;
     }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+
+    public void setTOKEN(String TOKEN) {
+        this.TOKEN= TOKEN;
+    }
+    public String getTOKEN() {
+        return TOKEN;
+    }
+    
+    
     
 }

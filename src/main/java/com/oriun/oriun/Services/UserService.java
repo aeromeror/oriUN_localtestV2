@@ -19,9 +19,9 @@ public class UserService {
     public ArrayList<UserModel> getUsers(){
         return (ArrayList<UserModel>)userRepositorie.findAll();
     }
-    /*public UserModel getUser(int id){
-        return (UserModel) userRepositorie.findById(id);
-    }*/ 
+    /* public UserModel getUser(String name){
+        return (UserModel) userRepositorie.findById(Integer.SIZE);
+    } */
     public UserModel saveUser(UserModel user){
         return userRepositorie.save(user);
     }
