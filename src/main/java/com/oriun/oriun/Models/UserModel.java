@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class UserModel {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition="text", unique = true, nullable = false)
     private String USER_NAME;
 

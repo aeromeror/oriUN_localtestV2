@@ -6,9 +6,8 @@
     "\\src\\main\\java",
     "\\src\\main\\java\\com",
     "\\src\\main\\java\\com\\oriun",
-    "\\src\\main\\java\\com\\oriun\\oriun",
-    "\\src\\main\\java\\com\\oriun\\oriun\\Controllers"
+    "\\src\\main\\java\\com\\oriun\\oriun"
   ],
-  "SelectedNode": "\\pom.xml",
+  "SelectedNode": "\\src\\main\\java\\com\\oriun\\oriun\\Models",
   "PreviewInSolutionExplorer": false
 }

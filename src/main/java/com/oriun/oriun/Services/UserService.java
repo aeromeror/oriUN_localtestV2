@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.UserModel;
-import com.oriun.oriun.Repositories.UserRepositorie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.oriun.oriun.Repositories.UserRepository;
 
 @Service
 @Transactional
 public class UserService {
     @Autowired
     
-    UserRepositorie userRepositorie;
+    UserRepository userRepository;
 
     public ArrayList<UserModel> getUsers(){
-        return (ArrayList<UserModel>)userRepositorie.findAll();
+        return (ArrayList<UserModel>)userRepository.findAll();
     }
     /* public UserModel getUser(String name){
         return (UserModel) userRepositorie.findById(Integer.SIZE);
     } */
     public UserModel saveUser(UserModel user){
-        return userRepositorie.save(user);
+        return userRepository.save(user);
     }
 }

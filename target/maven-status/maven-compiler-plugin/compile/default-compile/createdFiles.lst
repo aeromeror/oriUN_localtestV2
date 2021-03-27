@@ -1,6 +1,0 @@
-com\oriun\oriun\Models\UserModel.class
-com\oriun\oriun\Services\UserService.class
-com\oriun\oriun\Controllers\UserController.class
-com\oriun\oriun\OriunApplication.class
-com\oriun\oriun\Repositories\UserRepositorie.class
-com\oriun\oriun\ServletInitializer.class

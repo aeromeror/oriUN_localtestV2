@@ -9,7 +9,7 @@ public class SportModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(columnDefinition="text", unique = true, nullable = false)
     private String NAME_SPORT;
 
     public SportModel() {
