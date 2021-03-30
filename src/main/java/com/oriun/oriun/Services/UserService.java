@@ -1,6 +1,6 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
-
+import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.UserModel;
@@ -19,9 +19,9 @@ public class UserService {
     public ArrayList<UserModel> getUsers(){
         return (ArrayList<UserModel>)userRepository.findAll();
     }
-    /* public UserModel getUser(String name){
-        return (UserModel) userRepositorie.findById(Integer.SIZE);
-    } */
+    public Optional< UserModel>  getUser(String name){
+        return userRepository.findById(name);
+    } 
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);
     }
