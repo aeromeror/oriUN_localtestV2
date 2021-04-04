@@ -4,11 +4,10 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "SPORTS")
+@Table(name = "sports")
 public class SportModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition="text", unique = true, nullable = false)
     private String NAME_SPORT;
 

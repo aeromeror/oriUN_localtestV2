@@ -1,6 +1,8 @@
 package com.oriun.oriun.Controllers;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.UserModel;
@@ -10,10 +12,12 @@ import java.util.Date;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 //OTH
 import java.util.stream.Collectors;
@@ -23,23 +27,90 @@ import org.springframework.security.core.authority.AuthorityUtils;
 @RestController
 public class UserController {
 	@Autowired
+
     UserService userService;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@GetMapping("/user")
     public ArrayList<UserModel> obtenerUsuarios(){
         return userService.getUsers();
     }
 
-	@PostMapping("user")
-	public UserModel login(@RequestParam("user") String user_name,@RequestParam("rol_name") String rol_name, @RequestParam("password") String password) {
-		
-		String token = getJWTToken(user_name);
-		UserModel user = new UserModel();
+	@PostMapping("/userreg")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity register(@RequestParam("user") String user_name, @RequestParam("password") String password) {
+		UserModel user= new UserModel();
+		//user.setPASSWORD(passwordEncoder.encode(password));
+		user.setPASSWORD((password));
+		System.out.println(user.getPASSWORD());
 		user.setUSER_NAME(user_name);
-		user.setTOKEN(token);		
-		return user;
+		user.setROL_NAME("Usuario");
+		Optional<UserModel> us=userService.getUser(user_name);
+		if(us.isPresent()){
+			return new ResponseEntity<>(
+			"your user name is alredy taken "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+			HttpStatus.UNPROCESSABLE_ENTITY);
+		}else{
+			UserModel res=userService.saveUser(user);
+			return new ResponseEntity<>(
+				"your user register is succesfull "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+				HttpStatus.OK);
+		}
 		
 	}
+
+	@PostMapping("/userlog")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity login(@RequestParam("user") String user_name, @RequestParam("password") String password) {
+		Optional<UserModel> us=userService.getUser(user_name);
+		//return us.get();
+		if(us.isPresent()){
+			String token = getJWTToken(user_name);
+			if(us.get().getPASSWORD().equals(password)){
+				//us.get().setUSER_NAME(user_name);
+				//us.get().setTOKEN(token);
+				return new ResponseEntity<>(
+				token + "your user is"+us.get().getUSER_NAME()+" role"+us.get().getROL_NAME(), 
+				HttpStatus.OK);
+				//return us.get();
+			}else{
+				//throw new MyException("wrong password");
+				throw new ResponseStatusException(
+				HttpStatus.NOT_FOUND, "invalid user or password");
+			}
+		}
+		else{
+			throw new ResponseStatusException(
+				HttpStatus.NOT_FOUND, "User Not Found");
+		}
+		
+	}
+	/*@PostMapping("user")
+	@ResponseStatus(HttpStatus.OK)
+	public UserModel login(@RequestParam("user") String user_name, @RequestParam("password") String password) {
+		System.out.println(user_name);
+		
+		Optional<UserModel> us=userService.getUser(user_name);
+		if(us.isPresent()){
+			String token = getJWTToken(user_name);
+			if(us.get().getPASSWORD()==password){
+				us.get().setUSER_NAME(user_name);
+				us.get().setTOKEN(token);
+				return us.get();
+			}else{
+				//throw new MyException("wrong password");
+				throw new ResponseStatusException(
+				HttpStatus.NOT_FOUND, "invalid user or password");
+			}
+		}
+		else{
+			throw new ResponseStatusException(
+				HttpStatus.NOT_FOUND, "User Not Found");
+		}
+		
+	}*/
 
 	private String getJWTToken(String user_name) {
 		String secretKey = "mySecretKey";

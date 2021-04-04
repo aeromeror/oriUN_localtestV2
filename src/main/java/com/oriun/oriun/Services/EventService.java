@@ -1,5 +1,6 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -21,5 +22,18 @@ public class EventService {
     }
     public EventModel saveEvent(EventModel event){
         return eventRepository.save(event);
+    }
+    public Optional<EventModel> getEventById(int event_id) {
+        return eventRepository.findById(event_id);
+    }
+    public EventModel updateEvent(int eventID,EventModel newevent) {
+        Optional<EventModel> oldevent = eventRepository.findById(eventID);
+        if(oldevent.isPresent()){
+            eventRepository.delete(oldevent.get());
+            EventModel updatedEvent = eventRepository.save(newevent);
+            return updatedEvent;
+        }else{
+            return oldevent.get();
+        }
     }
 }

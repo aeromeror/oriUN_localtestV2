@@ -4,11 +4,11 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "USER")
-public class UserModel {
+@Table(name = "user")
+public class UserModel{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition="text", unique = true, nullable = false)
     private String USER_NAME;
 
@@ -17,7 +17,7 @@ public class UserModel {
     @Column(columnDefinition="text")
     private String PASSWORD;
 
-    private String TOKEN;
+    //private String TOKEN;
 
     public UserModel() {
     }
@@ -52,12 +52,12 @@ public class UserModel {
         this.PASSWORD = PASSWORD;
     }
 
-    public void setTOKEN(String TOKEN) {
+    /*public void setTOKEN(String TOKEN) {
         this.TOKEN= TOKEN;
     }
     public String getTOKEN() {
         return TOKEN;
-    }
+    }*/
     
     
     

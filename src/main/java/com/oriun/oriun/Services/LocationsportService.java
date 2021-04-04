@@ -1,5 +1,6 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -24,16 +25,23 @@ public class LocationsportService {
     }
 
 
-    /*public LocationsportModel getLocationsportById(String element_id) {
+    public Optional<LocationsportModel> getLocationsportById(String element_id) {
         return locationsportRepository.findById(element_id);
     }
 
-    /*public LocationsportModel updateLocationsport(String newname) {
-        LocationsportModel updelement = locationsportRepository.findById(elementID);
-        updelement.setName_loc_sport(newname);
-        ElementModel updatedElement = elementRepository.save(updelement);
-        return updatedElement;
-    }*/
+    public LocationsportModel updateLocationsport(String newname,String oldname) {
+        Optional<LocationsportModel> updelement = locationsportRepository.findById(oldname);
+        if(updelement.isPresent()){
+            locationsportRepository.delete(updelement.get());
+            LocationsportModel newloc=new LocationsportModel(newname);
+            
+            locationsportRepository.save(newloc);
+            return newloc;
+        }else{
+            return updelement.get();
+        }
+        
+    }
 
     /*public ResponseEntity<?> deleteElement(String elementID) {
         LocationsportModel element  = locationsportRepository.findById(elementID);

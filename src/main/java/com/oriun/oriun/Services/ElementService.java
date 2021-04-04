@@ -24,18 +24,19 @@ public class ElementService {
     }
 
 
-    public Optional<ElementModel> getElemetById(int element_id) {
+    public Optional<ElementModel> getElementById(int element_id) {
         return elementRepository.findById(element_id);
     }
 
-    /*public ElementModel updateElement(int elementID,ElementModel newelement) {
-        ElementModel updelement = elementRepository.findById(elementID);
-        updelement.setElement_name(newelement.getElement_name());
-        updelement.setElement_image(newelement.getElement_image());
-        updelement.setDescription(newelement.getDescription());
-        updelement.setAvailable(newelement.isAvailable());
-        ElementModel updatedElement = elementRepository.save(updelement);
-        return updatedElement;
+    public ElementModel updateElement(int elementID,ElementModel newelement) {
+        Optional<ElementModel> oldelement = elementRepository.findById(elementID);
+        if(oldelement.isPresent()){
+            elementRepository.delete(oldelement.get());
+            ElementModel updatedElement = elementRepository.save(newelement);
+            return updatedElement;
+        }else{
+            return oldelement.get();
+        }
     }
 
     /*public ResponseEntity<?> deleteElement(int elementID) {

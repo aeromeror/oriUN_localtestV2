@@ -8,18 +8,18 @@ public class LocationsportModel {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private String name_loc_sport;
+    private String NAME_LOC_SPORT;
 
     public LocationsportModel(String name_loc_sport){
-            this.name_loc_sport=name_loc_sport;
+            this.NAME_LOC_SPORT=name_loc_sport;
     }
 
 	public String getName_loc_sport() {
-		return this.name_loc_sport;
+		return this.NAME_LOC_SPORT;
 	}
 
 	public void setName_loc_sport(String name_loc_sport) {
-		this.name_loc_sport = name_loc_sport;
+		this.NAME_LOC_SPORT = name_loc_sport;
 	}
 
     

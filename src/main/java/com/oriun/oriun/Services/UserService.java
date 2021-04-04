@@ -25,4 +25,14 @@ public class UserService {
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);
     }
+    public UserModel updateUser(String userid,UserModel newuser) {
+        Optional<UserModel> olduser = userRepository.findById(userid);
+        if(olduser.isPresent()){
+            userRepository.delete(olduser.get());
+            UserModel updatedUser = userRepository.save(newuser);
+            return updatedUser;
+        }else{
+            return olduser.get();
+        }
+    }
 }

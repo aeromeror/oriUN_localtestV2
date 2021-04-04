@@ -9,12 +9,12 @@ import com.oriun.oriun.Services.ElementService;
 public class ElementController {
     @Autowired
     ElementService elementService;
-    @GetMapping("/el")
+    @GetMapping("/elements")
     public ArrayList<ElementModel> obtenerElementos(){
         return elementService.getElements();
     }
     
-    @PostMapping("/el")
+    @PostMapping("/element")
     public ElementModel guardardeporte(@RequestBody ElementModel element){
         return this.elementService.saveElement(element);
     }

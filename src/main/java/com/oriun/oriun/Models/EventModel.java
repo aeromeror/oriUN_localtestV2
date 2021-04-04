@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "EVENT")
+@Table(name = "event")
 public class EventModel {
 
     @Id
