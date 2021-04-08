@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.UserModel;
 import com.oriun.oriun.Services.UserService;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,12 +61,51 @@ public class UserController {
 		}
 		
 	}
-
+	
 	@PostMapping("/userlog")
-	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity login(@RequestBody HashMap<String,Object> user){
+                // Note: The parameters are user_name and password
+		System.out.println("user"+user.get("user_name").toString()+"password"+user.get("password").toString());
+		Optional<UserModel> us=userService.getUser(user.get("user_name").toString());
+		//return us.get();
+		if(us.isPresent()){
+			String token = getJWTToken(user.get("user_name").toString());
+			if(us.get().getPASSWORD().equals(user.get("password").toString())){ 
+                                HashMap <String,Object> result= new HashMap();
+                                result.put("TOKEN",token);
+                                result.put("USER_NAME",us.get().getUSER_NAME()); 
+                                result.put("ROL_NAME",us.get().getROL_NAME());
+				return new ResponseEntity<>(
+                                        result, HttpStatus.OK);
+				//return us.get();
+			}else{
+				//throw new MyException("wrong password");
+				throw new ResponseStatusException(
+				HttpStatus.NOT_FOUND, "invalid password");
+			}
+		}
+		else{
+			throw new ResponseStatusException(
+				HttpStatus.NOT_ACCEPTABLE, "User Not Found");
+		}
+		
+	}
+	
+
+
+
+
+
+
+
+
+
+	//aca el mio
+	/*@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity login(@RequestParam("user") String user_name, @RequestParam("password") String password) {
 		Optional<UserModel> us=userService.getUser(user_name);
 		//return us.get();
+		System.out.println("user"+user_name+"password"+password);
 		if(us.isPresent()){
 			String token = getJWTToken(user_name);
 			if(us.get().getPASSWORD().equals(password)){
