@@ -34,10 +34,14 @@ public class EventModel {
     @Column(columnDefinition="text")
     private String OTHER_SPORT;
 
-
     private LocalDateTime EVENT_INIT_HOUR;
 
     private LocalDateTime EVENT_FINISH_HOUR;
+
+    private String EVENT_TITLE;
+
+	
+
 
     public EventModel() {
     }
@@ -55,7 +59,14 @@ public class EventModel {
         this.EVENT_INIT_HOUR = EVENT_INIT_HOUR;
         this.EVENT_FINISH_HOUR = EVENT_FINISH_HOUR;
     }
+    
+    public String getEVENT_TITLE() {
+		return this.EVENT_TITLE;
+	}
 
+	public void setEVENT_TITLE(String EVENT_TITLE) {
+		this.EVENT_TITLE = EVENT_TITLE;
+	}
     public int getID_EVENT() {
         return ID_EVENT;
     }

@@ -20,6 +20,7 @@ public class EventService {
     public ArrayList<EventModel> getEvents(){
         return (ArrayList<EventModel>)eventRepository.findAll();
     }
+    
     public EventModel saveEvent(EventModel event){
         return eventRepository.save(event);
     }
@@ -35,5 +36,9 @@ public class EventService {
         }else{
             return oldevent.get();
         }
+    }
+    public EventModel deleteEvent(EventModel event){
+        eventRepository.delete(event);
+        return event;
     }
 }

@@ -1,11 +1,13 @@
 package com.oriun.oriun.Models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "user_event")
-public class User_eventModel{
+public class User_eventModel implements Serializable{
     @EmbeddedId
     private User_eventPK user_eventPK;
 
@@ -17,12 +19,12 @@ public class User_eventModel{
 		this.user_eventPK.setUSER_NAME(USER_NAME);;
 	}
     
-	public int getID_EVENt() {
-		return this.user_eventPK.getID_EVENt();
+	public int getID_EVENT() {
+		return this.user_eventPK.getID_EVENT();
 	}
 
-	public void setID_EVENt(int ID_EVENt) {
-		this.user_eventPK.setID_EVENt(ID_EVENt);
+	public void setID_EVENT(int ID_EVENT) {
+		this.user_eventPK.setID_EVENT(ID_EVENT);
 	}
 
 }

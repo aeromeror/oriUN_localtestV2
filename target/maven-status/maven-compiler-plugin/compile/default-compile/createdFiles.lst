@@ -5,6 +5,7 @@ com\oriun\oriun\Models\ElementModel.class
 com\oriun\oriun\Models\SportModel.class
 com\oriun\oriun\Repositories\User_eventRepository.class
 com\oriun\oriun\Controllers\ElementController.class
+com\oriun\oriun\Controllers\EventController.class
 com\oriun\oriun\Models\LocationsportModel.class
 com\oriun\oriun\Repositories\LocationsportRepository.class
 com\oriun\oriun\Security\WebSecurityConfig.class
@@ -19,6 +20,7 @@ com\oriun\oriun\Services\ElementService.class
 com\oriun\oriun\Controllers\RolesController.class
 com\oriun\oriun\Models\LocationsibuModel.class
 com\oriun\oriun\Repositories\SportRepository.class
+com\oriun\oriun\Services\User_eventService.class
 com\oriun\oriun\Repositories\User_sportsRepository.class
 com\oriun\oriun\Login\HelloWorldController.class
 com\oriun\oriun\Models\Location_sportsPK.class

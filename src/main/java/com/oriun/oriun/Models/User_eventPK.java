@@ -19,11 +19,11 @@ public class User_eventPK implements Serializable{
 		this.USER_NAME = USER_NAME;
 	}
 
-	public int getID_EVENt() {
+	public int getID_EVENT() {
 		return this.ID_EVENT;
 	}
 
-	public void setID_EVENt(int ID_EVENT) {
+	public void setID_EVENT(int ID_EVENT) {
 		this.ID_EVENT = ID_EVENT;
 	}
 
