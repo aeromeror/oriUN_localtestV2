@@ -33,8 +33,7 @@ public class SportService {
             return old.get();
         }
     }
-    public SportModel deleteSport(SportModel sport){
-        sportRepository.delete(sport);
-        return sport;
+    public void deleteSport(String sport){
+        sportRepository.deleteById(sport);;
     }
 }

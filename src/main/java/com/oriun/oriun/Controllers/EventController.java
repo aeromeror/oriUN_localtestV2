@@ -24,10 +24,11 @@ public class EventController {
     @PostMapping("/event")
     public EventModel guardarevento(@RequestBody EventModel event){
         User_eventModel asistencia= new User_eventModel();
+        EventModel ev= eventService.saveEvent(event);
         asistencia.setID_EVENT(event.getID_EVENT());
         asistencia.setUSER_NAME(event.getUSER_NAME());
         user_eventService.saveUser_event(asistencia);
-        return this.eventService.saveEvent(event);
+        return ev;
     }
 
     @GetMapping("/userevents")
@@ -41,5 +42,22 @@ public class EventController {
         }
         return userevents;
     }
-    
+    //falta borrar las notificaciones que crea el evento
+    @DeleteMapping("/event")
+    public EventModel borrarevento(@RequestParam("event") int event_id){
+        ArrayList<User_eventModel> usev=user_eventService.getallUser_events();
+        for(int c=0;c<usev.size();c++){
+            User_eventModel ev=usev.get(c);
+            if(ev.getID_EVENT()==event_id){
+                user_eventService.deleteUserEvent(ev);
+            }
+        }
+        Optional<EventModel> ev = eventService.getEventById(event_id);
+        if(ev.isPresent()){
+            eventService.deleteEvent(ev.get());
+            return ev.get();
+        }else{
+            return null;
+        }
+    }
 }

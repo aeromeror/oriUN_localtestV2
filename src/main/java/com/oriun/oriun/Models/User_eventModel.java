@@ -11,6 +11,9 @@ public class User_eventModel implements Serializable{
     @EmbeddedId
     private User_eventPK user_eventPK;
 
+	public User_eventModel(){
+		this.user_eventPK= new User_eventPK();
+	}
     public String getUSER_NAME() {
 		return this.user_eventPK.getUSER_NAME();
 	}

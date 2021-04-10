@@ -21,7 +21,7 @@ public class SportController {
     }
 
     @DeleteMapping("/nosports")
-    public SportModel borrarDeporte(@RequestBody SportModel sports){
-        return sportService.deleteSports(sports);
+    public void borrarDeporte(@RequestParam("sport") String sport){
+        sportService.deleteSport(sport);
     }
 }

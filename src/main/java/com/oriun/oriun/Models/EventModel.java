@@ -2,8 +2,8 @@ package com.oriun.oriun.Models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.*;
-
-
+import java.sql.Date;
+import java.sql.Time;
 @Entity
 @Table(name = "event")
 public class EventModel {
@@ -11,7 +11,7 @@ public class EventModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int ID_EVENT;
+    private Integer ID_EVENT;
 
     @Column(columnDefinition="text")
     private String USER_NAME;
@@ -25,18 +25,18 @@ public class EventModel {
     @Column(columnDefinition="text")
     private String EVENT_DESCRIPTION;
 
-    private LocalDate EVENT_INIT;
+    private Date EVENT_INIT;
 
-    private LocalDate EVENT_END;
+    private Date EVENT_END;
 
     private double CAPACITY;
 
     @Column(columnDefinition="text")
     private String OTHER_SPORT;
 
-    private LocalDateTime EVENT_INIT_HOUR;
+    private Time EVENT_INIT_HOUR;
 
-    private LocalDateTime EVENT_FINISH_HOUR;
+    private Time EVENT_FINISH_HOUR;
 
     private String EVENT_TITLE;
 
@@ -46,7 +46,7 @@ public class EventModel {
     public EventModel() {
     }
 
-    public EventModel(int ID_EVENT, String USER_NAME, String NAME_LOC_SPORT, String NAME_SPORT, String EVENT_DESCRIPTION, LocalDate EVENT_INIT, LocalDate EVENT_END, double CAPACITY, String OTHER_SPORT, LocalDateTime EVENT_INIT_HOUR, LocalDateTime EVENT_FINISH_HOUR) {
+    public EventModel(Integer ID_EVENT, String USER_NAME, String NAME_LOC_SPORT, String NAME_SPORT, String EVENT_DESCRIPTION, Date EVENT_INIT, Date EVENT_END, double CAPACITY, String OTHER_SPORT, Time EVENT_INIT_HOUR, Time EVENT_FINISH_HOUR) {
         this.ID_EVENT = ID_EVENT;
         this.USER_NAME = USER_NAME;
         this.NAME_LOC_SPORT = NAME_LOC_SPORT;
@@ -67,11 +67,11 @@ public class EventModel {
 	public void setEVENT_TITLE(String EVENT_TITLE) {
 		this.EVENT_TITLE = EVENT_TITLE;
 	}
-    public int getID_EVENT() {
+    public Integer getID_EVENT() {
         return ID_EVENT;
     }
 
-    public void setID_EVENT(int ID_EVENT) {
+    public void setID_EVENT(Integer ID_EVENT) {
         this.ID_EVENT = ID_EVENT;
     }
 
@@ -107,19 +107,19 @@ public class EventModel {
         this.EVENT_DESCRIPTION = EVENT_DESCRIPTION;
     }
 
-    public LocalDate getEVENT_INIT() {
+    public Date getEVENT_INIT() {
         return EVENT_INIT;
     }
 
-    public void setEVENT_INIT(LocalDate EVENT_INIT) {
+    public void setEVENT_INIT(Date EVENT_INIT) {
         this.EVENT_INIT = EVENT_INIT;
     }
 
-    public LocalDate getEVENT_END() {
+    public Date getEVENT_END() {
         return EVENT_END;
     }
 
-    public void setEVENT_END(LocalDate EVENT_END) {
+    public void setEVENT_END(Date EVENT_END) {
         this.EVENT_END = EVENT_END;
     }
 
@@ -139,19 +139,19 @@ public class EventModel {
         this.OTHER_SPORT = OTHER_SPORT;
     }
 
-    public LocalDateTime getEVENT_INIT_HOUR() {
+    public Time getEVENT_INIT_HOUR() {
         return EVENT_INIT_HOUR;
     }
 
-    public void setEVENT_INIT_HOUR(LocalDateTime EVENT_INIT_HOUR) {
+    public void setEVENT_INIT_HOUR(Time EVENT_INIT_HOUR) {
         this.EVENT_INIT_HOUR = EVENT_INIT_HOUR;
     }
 
-    public LocalDateTime getEVENT_FINISH_HOUR() {
+    public Time getEVENT_FINISH_HOUR() {
         return EVENT_FINISH_HOUR;
     }
 
-    public void setEVENT_FINISH_HOUR(LocalDateTime EVENT_FINISH_HOUR) {
+    public void setEVENT_FINISH_HOUR(Time EVENT_FINISH_HOUR) {
         this.EVENT_FINISH_HOUR = EVENT_FINISH_HOUR;
     }
 

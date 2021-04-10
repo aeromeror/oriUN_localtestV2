@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import com.oriun.oriun.Models.User_eventModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.oriun.oriun.Repositories.User_eventRepository;
 
@@ -25,5 +27,10 @@ public class User_eventService {
     } 
     public User_eventModel saveUser_event(User_eventModel user){
         return user_eventRepository.save(user);
+    }
+    public ResponseEntity deleteUserEvent(User_eventModel event){
+        user_eventRepository.delete(event);
+        return new ResponseEntity<>(
+                                         HttpStatus.OK);
     }
 }
