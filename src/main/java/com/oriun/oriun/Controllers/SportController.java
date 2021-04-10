@@ -2,6 +2,7 @@ package com.oriun.oriun.Controllers;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import com.oriun.oriun.Models.SportModel;
 import com.oriun.oriun.Services.SportService;
 @RestController
@@ -19,4 +20,8 @@ public class SportController {
         return this.sportService.saveSport(sports);
     }
 
+    @DeleteMapping("/nosports")
+    public SportModel borrarDeporte(@RequestBody SportModel sports){
+        return sportService.deleteSports(sports);
+    }
 }

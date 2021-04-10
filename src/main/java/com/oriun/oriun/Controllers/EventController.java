@@ -35,7 +35,7 @@ public class EventController {
         List< User_eventModel> events = user_eventService.getUser_event(user_name);
         ArrayList<EventModel> userevents=new ArrayList<EventModel>();
         for(int c=0;c<events.size();c++){
-            int numevent=events.get(0).getID_EVENT();
+            int numevent=events.get(c).getID_EVENT();
             Optional<EventModel> event=eventService.getEventById(numevent);
             userevents.add(event.get());
         }

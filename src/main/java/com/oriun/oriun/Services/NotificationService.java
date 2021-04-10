@@ -28,6 +28,13 @@ public class NotificationService {
     public Optional<NotificationModel> getNotificationById(int id_notification) {
         return notificationRepository.findById(id_notification);
     }
+
+    /*
+    public Optional<NotificationModel> getNotificationById(String user_name) {
+        return notificationRepository.findById(user_name);
+    }*/
+
+
     
     public NotificationModel updateNotification(int id_notification,NotificationModel newnotif) {
         Optional<NotificationModel> oldnotif = notificationRepository.findById(id_notification);
