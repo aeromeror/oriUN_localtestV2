@@ -1,5 +1,6 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 import javax.transaction.Transactional;
 
@@ -44,5 +45,50 @@ public class ElementService {
         elementRepository.delete(element);
         return ResponseEntity.ok().build();
     }*/
-
+    public ArrayList<ElementModel> getElementsLsibu(String name_lsibu){
+        ArrayList<ElementModel> AL1=(ArrayList<ElementModel>)elementRepository.findAll();
+        Iterator<ElementModel> AL1_iterator=AL1.iterator();
+        while(AL1_iterator.hasNext()){
+            ElementModel em=AL1_iterator.next();
+            if(!em.getNAME_LOCATION().equals(name_lsibu)){
+                AL1_iterator.remove();
+            }
+        }
+        return AL1;
+    }
+    public ElementModel saveElementLsibu(ElementModel element,String name_lsibu){
+        if (element.getNAME_LOCATION().equals(name_lsibu)){
+            return elementRepository.save(element);
+        }
+        return null;
+    }
+    public Optional<ElementModel> getElementByIdinLsibu(int element_id,String name_lsibu) {
+        Optional<ElementModel> em=elementRepository.findById(element_id);
+        if(em.isPresent()&& em.get().getNAME_LOCATION().equals(name_lsibu)){
+            return em;
+        }else{
+            return null;
+        }
+    }
+    public ElementModel updateElementLsibu(int elementID,ElementModel newelement,String name_lsibu) {
+        Optional<ElementModel> oldelement = elementRepository.findById(elementID);
+        if(oldelement.isPresent()&& newelement.getNAME_LOCATION().equals(name_lsibu)&& oldelement.get().getNAME_LOCATION().equals(name_lsibu)){
+            elementRepository.delete(oldelement.get());
+            ElementModel updatedElement = elementRepository.save(newelement);
+            return updatedElement;
+        }else{
+            return oldelement.get();
+        }
+    }
+    public ElementModel deleteElement(ElementModel element){
+        elementRepository.delete(element);
+        return element;
+    }
+    public ElementModel deleteElementLsibu(ElementModel element,String name_lsibu){
+        if (element.getNAME_LOCATION().equals(name_lsibu)){
+            elementRepository.delete(element);
+            return element;
+        }
+        return null;
+    }
 }

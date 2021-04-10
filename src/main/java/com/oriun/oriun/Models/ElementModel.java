@@ -18,7 +18,9 @@ public class ElementModel {
     private String DESCRIPTION;
     @Column(columnDefinition="text")
     private String ELEMENT_NAME;
+	@Lob
     private Blob ELEMENT_IMAGE;
+
 
 	public int getID_ELEMENT() {
 		return this.ID_ELEMENT;
@@ -76,7 +78,8 @@ public class ElementModel {
 		this.ELEMENT_IMAGE = ELEMENT_IMAGE;
 	}
 
-
+	public ElementModel(){
+	}
     public ElementModel(int id_element,boolean available,String description,
     String element_name,Blob element_image,String name_location,String name_sport){
         this.ID_ELEMENT=id_element;

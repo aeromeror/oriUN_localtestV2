@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.ElementModel;
 import com.oriun.oriun.Services.ElementService;
 @RestController
-//@RequestMapping("/sports")
+//@RequestMapping("/element")
 public class ElementController {
     @Autowired
     ElementService elementService;
@@ -15,8 +15,11 @@ public class ElementController {
     }
     
     @PostMapping("/element")
-    public ElementModel guardardeporte(@RequestBody ElementModel element){
+    public ElementModel guardarElemento(@RequestBody ElementModel element){
         return this.elementService.saveElement(element);
     }
-
+    @GetMapping("/elntofsibu")
+    public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu){
+        return elementService.getElementsLsibu(name_lsibu);
+    }
 }

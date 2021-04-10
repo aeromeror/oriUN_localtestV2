@@ -14,12 +14,12 @@ public class NotificationController {
     @Autowired
     NotificationService notificationService;
     
-    @GetMapping("/events")
+    @GetMapping("/notifications")
     public ArrayList<NotificationModel> obtenerNotificaciones(){
         return notificationService.getNotifications();
     }
     
-    @PostMapping("/event")
+    @PostMapping("/notification")
     public NotificationModel guardarnotificacion(@RequestBody NotificationModel notification){
         return this.notificationService.saveNotification(notification);
     }
