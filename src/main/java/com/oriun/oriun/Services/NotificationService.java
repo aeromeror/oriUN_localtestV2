@@ -1,7 +1,7 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.NotificationModel;
@@ -29,10 +29,10 @@ public class NotificationService {
         return notificationRepository.findById(id_notification);
     }
 
-    /*
-    public Optional<NotificationModel> getNotificationById(String user_name) {
-        return notificationRepository.findById(user_name);
-    }*/
+    
+    public List<NotificationModel> getNotificationByUser(String name) {
+        return notificationRepository.findByUSER_NAME(name);
+    }
 
 
     

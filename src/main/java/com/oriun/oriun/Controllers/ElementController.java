@@ -21,4 +21,5 @@ public class ElementController {
     public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu){
         return elementService.getElementsLsibu(name_lsibu);
     }
+    //THE GAME
 }
