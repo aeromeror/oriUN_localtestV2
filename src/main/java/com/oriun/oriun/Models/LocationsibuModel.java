@@ -10,6 +10,7 @@ public class LocationsibuModel {
     @Column(unique = true, nullable = false)
     private String NAME_LOCATION;
     private boolean OPEN;
+	@Lob
     private Blob IMAGE_LOCATION;
 
 	public String getNAME_LOCATION() {
@@ -42,6 +43,13 @@ public class LocationsibuModel {
             this.OPEN=open;
             this.IMAGE_LOCATION=image;
     }
+	public LocationsibuModel(String name_loc_sport, boolean open){
+		this.NAME_LOCATION=name_loc_sport;
+		this.OPEN=open;
+		this.IMAGE_LOCATION=null;
+	}
+	public LocationsibuModel(){
+	}
 
 	
     

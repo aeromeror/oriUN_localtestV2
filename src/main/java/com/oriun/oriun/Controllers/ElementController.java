@@ -21,5 +21,9 @@ public class ElementController {
     public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu){
         return elementService.getElementsLsibu(name_lsibu);
     }
+    @DeleteMapping("/noelements")
+    public void borrarElemento(@RequestParam("id") int id){
+        elementService.deleteElement(id);
+    }
     //THE GAME
 }

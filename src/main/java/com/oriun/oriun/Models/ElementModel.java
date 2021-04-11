@@ -81,15 +81,24 @@ public class ElementModel {
 	public ElementModel(){
 	}
     public ElementModel(int id_element,boolean available,String description,
-    String element_name,Blob element_image,String name_location,String name_sport){
+    String element_name,String name_location,String name_sport,Blob element_image){
         this.ID_ELEMENT=id_element;
         this.AVAILABLE=available;
         this.DESCRIPTION=description;
         this.ELEMENT_NAME=element_name;
-        this.ELEMENT_IMAGE=element_image;
 		this.NAME_LOCATION=name_location;
 		this.NAME_SPORT=name_sport;
+		this.ELEMENT_IMAGE=element_image;
     }
+	public ElementModel(int id_element,boolean available,String description,
+						String element_name,String name_location,String name_sport){
+		this.ID_ELEMENT=id_element;
+		this.AVAILABLE=available;
+		this.DESCRIPTION=description;
+		this.ELEMENT_NAME=element_name;
+		this.NAME_LOCATION=name_location;
+		this.NAME_SPORT=name_sport;
+	}
 
 	
 

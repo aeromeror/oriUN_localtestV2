@@ -80,15 +80,9 @@ public class ElementService {
             return oldelement.get();
         }
     }
-    public ElementModel deleteElement(ElementModel element){
-        elementRepository.delete(element);
-        return element;
-    }
-    public ElementModel deleteElementLsibu(ElementModel element,String name_lsibu){
-        if (element.getNAME_LOCATION().equals(name_lsibu)){
-            elementRepository.delete(element);
-            return element;
+    public void deleteElement(int id){
+        if(elementRepository.existsById(id)){
+            elementRepository.deleteById(id);
         }
-        return null;
     }
 }
