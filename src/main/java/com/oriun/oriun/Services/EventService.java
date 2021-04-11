@@ -1,5 +1,6 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -40,5 +41,11 @@ public class EventService {
     public EventModel deleteEvent(EventModel event){
         eventRepository.delete(event);
         return event;
+    }
+    public List<EventModel> getOtherEvents(){
+        return eventRepository.findByOthers();
+    }
+    public List<String> getOtherSports(){
+        return eventRepository.findByOtherSports();
     }
 }

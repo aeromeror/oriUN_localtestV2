@@ -41,6 +41,15 @@ public class EventController {
         }
         return userevents;
     }
+    @GetMapping("/others")
+    public List<EventModel> obtenerOthers(){
+        return eventService.getOtherEvents();
+    }
+
+    @GetMapping("/othersports")
+    public List<String> obtenerOtherSports(){
+        return eventService.getOtherSports();
+    }
     //falta borrar las notificaciones que crea el evento
     @DeleteMapping("/event")
     public EventModel borrarevento(@RequestParam("event") int event_id){
