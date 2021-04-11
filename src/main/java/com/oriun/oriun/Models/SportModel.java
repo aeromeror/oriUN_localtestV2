@@ -18,11 +18,11 @@ public class SportModel {
         this.NAME_SPORT = name;
     }
 
-    public String getName() {
+    public String getNAME_SPORT() {
         return NAME_SPORT;
     }
 
-    public void setName(String name) {
+    public void setNAME_SPORT(String name) {
         this.NAME_SPORT = name;
     }
     

@@ -17,7 +17,7 @@ public class SportController {
     
     @PostMapping("/g")
     public SportModel guardardeporte(@RequestBody SportModel sports){
-        return this.sportService.saveSport(sports);
+        return sportService.saveSport(sports);
     }
 
     @DeleteMapping("/nosports")

@@ -13,7 +13,6 @@ public class ElementController {
     public ArrayList<ElementModel> obtenerElementos(){
         return elementService.getElements();
     }
-    
     @PostMapping("/element")
     public ElementModel guardarElemento(@RequestBody ElementModel element){
         return this.elementService.saveElement(element);

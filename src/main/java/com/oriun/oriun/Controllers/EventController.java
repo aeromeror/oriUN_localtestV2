@@ -15,7 +15,6 @@ public class EventController {
     EventService eventService;
     @Autowired
     User_eventService user_eventService;
-
     @GetMapping("/events")
     public ArrayList<EventModel> obtenerEventos(){
         return eventService.getEvents();
