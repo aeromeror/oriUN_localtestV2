@@ -30,7 +30,6 @@ com\oriun\oriun\Repositories\User_sportsRepository.class
 com\oriun\oriun\Login\HelloWorldController.class
 com\oriun\oriun\Models\User_eventPK.class
 com\oriun\oriun\Repositories\RolesRepository.class
-com\oriun\oriun\OriunApplication$1.class
 com\oriun\oriun\Controllers\SportController.class
 com\oriun\oriun\Repositories\ElementRepository.class
 com\oriun\oriun\Security\PEncoder.class

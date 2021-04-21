@@ -1,11 +1,16 @@
 package com.oriun.oriun.Models;
 
+import java.util.Collection;
+
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
 @Table(name = "user")
-public class UserModel{
+public class UserModel {
 
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,13 +56,6 @@ public class UserModel{
     public void setPASSWORD(String PASSWORD) {
         this.PASSWORD = PASSWORD;
     }
-
-    /*public void setTOKEN(String TOKEN) {
-        this.TOKEN= TOKEN;
-    }
-    public String getTOKEN() {
-        return TOKEN;
-    }*/
     
     
     

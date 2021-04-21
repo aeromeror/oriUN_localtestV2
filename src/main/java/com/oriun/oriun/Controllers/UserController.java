@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.UserModel;
+import com.oriun.oriun.Security.Encoder;
 import com.oriun.oriun.Services.UserService;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ public class UserController {
 	@Autowired
 
     UserService userService;
+	Encoder encoder; 
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -39,12 +41,38 @@ public class UserController {
         return userService.getUsers();
     }
 
+	@PostMapping("/modreg")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity registermod(@RequestParam("user") String user_name, @RequestParam("password") String password) {
+		UserModel user= new UserModel();
+		//user.setPASSWORD(passwordEncoder.encode(password));
+		user.setPASSWORD((password));
+		encoder= new Encoder();
+		user.setPASSWORD((encoder.encode(password)));
+		System.out.println(user.getPASSWORD());
+		user.setUSER_NAME(user_name);
+		user.setROL_NAME("Moderador");
+		Optional<UserModel> us=userService.getUser(user_name);
+		if(us.isPresent()){
+			return new ResponseEntity<>(
+			"your user name is alredy taken "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+			HttpStatus.UNPROCESSABLE_ENTITY);
+		}else{
+			UserModel res=userService.saveUser(user);
+			return new ResponseEntity<>(
+				"your user register is succesfull "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+				HttpStatus.OK);
+		}
+		
+	}
+
 	@PostMapping("/userreg")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity register(@RequestParam("user") String user_name, @RequestParam("password") String password) {
 		UserModel user= new UserModel();
 		//user.setPASSWORD(passwordEncoder.encode(password));
-		user.setPASSWORD((password));
+		encoder= new Encoder();
+		user.setPASSWORD((encoder.encode(password)));
 		System.out.println(user.getPASSWORD());
 		user.setUSER_NAME(user_name);
 		user.setROL_NAME("Usuario");
@@ -68,9 +96,11 @@ public class UserController {
 		System.out.println("user"+user.get("user_name").toString()+"password"+user.get("password").toString());
 		Optional<UserModel> us=userService.getUser(user.get("user_name").toString());
 		//return us.get();
+		encoder= new Encoder();
+		String pass=((encoder.encode(user.get("password").toString())));
 		if(us.isPresent()){
 			String token = getJWTToken(user.get("user_name").toString());
-			if(us.get().getPASSWORD().equals(user.get("password").toString())){ 
+			if(us.get().getPASSWORD().equals(pass)){ 
                                 HashMap <String,Object> result= new HashMap();
                                 result.put("TOKEN",token);
                                 result.put("USER_NAME",us.get().getUSER_NAME()); 

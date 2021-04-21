@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import com.oriun.oriun.Models.UserModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.oriun.oriun.Repositories.UserRepository;
 
