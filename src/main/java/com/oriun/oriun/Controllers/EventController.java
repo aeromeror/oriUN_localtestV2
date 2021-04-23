@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.EventModel;
+import com.oriun.oriun.Models.NotificationModel;
 import com.oriun.oriun.Models.User_eventModel;
 import com.oriun.oriun.Services.EventService;
+import com.oriun.oriun.Services.NotificationService;
 import com.oriun.oriun.Services.User_eventService;
 @RestController
 //@RequestMapping("/sports")
@@ -15,6 +17,9 @@ public class EventController {
     EventService eventService;
     @Autowired
     User_eventService user_eventService;
+    @Autowired
+    NotificationService notificationService;
+
     @GetMapping("/events")
     public ArrayList<EventModel> obtenerEventos(){
         return eventService.getEvents();
@@ -22,11 +27,23 @@ public class EventController {
     
     @PostMapping("/event")
     public EventModel guardarevento(@RequestBody EventModel event){
+        java.util.Date d1 = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+        event.setCREATION_DATE(sqlDate);
+        System.out.println(sqlDate);
         User_eventModel asistencia= new User_eventModel();
         EventModel ev= eventService.saveEvent(event);
         asistencia.setID_EVENT(event.getID_EVENT());
         asistencia.setUSER_NAME(event.getUSER_NAME());
         user_eventService.saveUser_event(asistencia);
+        NotificationModel notification = new NotificationModel();
+        notification.setNAME_SPORT(ev.getNAME_SPORT());
+        notification.setID_EVENT(ev.getID_EVENT());
+        notification.setNOTIFICATION_DATE(ev.getEVENT_INIT());
+        notification.setTIME_NOTIFICATION(ev.getEVENT_INIT_HOUR());
+        notification.setEXPIRATION_TIME(ev.getEVENT_FINISH_HOUR());
+        notification.setNOTIFICATION_DESCRIPTION("A brand new event is coming : "+ev.getEVENT_TITLE());
+        notificationService.saveNotification(notification);
         return ev;
     }
 

@@ -24,16 +24,17 @@ public class NotificationController {
         return this.notificationService.saveNotification(notification);
     }
 
-    @GetMapping("/usernotifications")
-    public ArrayList<NotificationModel> obtenerNotificacionesUsuarios(@RequestParam("user") String user_name){
-        List< NotificationModel> notifications = notificationService.getNotificationByUser(user_name);
-        ArrayList<NotificationModel> tmp = new ArrayList<NotificationModel>();
+    @GetMapping("/sportnotifications")
+    public List<NotificationModel> obtenerNotificacionesUsuarios(@RequestParam("sport") String sport_name){
+        List< NotificationModel> notifications = notificationService.getNotificationBySport(sport_name);
+        /*ArrayList<NotificationModel> tmp = new ArrayList<NotificationModel>();
         for(int c=0;c<notifications.size();c++){
             int notifnum=notifications.get(c).getID_NOTIFICATION();
             Optional<NotificationModel> notif=notificationService.getNotificationById(notifnum);
             tmp.add(notif.get());
-        }
-        return tmp;
+        }*/
+        //return tmp;
+        return notifications;
     }
 
 

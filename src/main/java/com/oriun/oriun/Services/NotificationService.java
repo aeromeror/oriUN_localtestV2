@@ -30,8 +30,8 @@ public class NotificationService {
     }
 
     
-    public List<NotificationModel> getNotificationByUser(String name) {
-        return notificationRepository.findByUSER_NAME(name);
+    public List<NotificationModel> getNotificationBySport(String namesport) {
+        return notificationRepository.findByNAME_SPORT(namesport);
     }
 
 

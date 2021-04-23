@@ -32,5 +32,4 @@ com\oriun\oriun\Models\User_eventPK.class
 com\oriun\oriun\Repositories\RolesRepository.class
 com\oriun\oriun\Controllers\SportController.class
 com\oriun\oriun\Repositories\ElementRepository.class
-com\oriun\oriun\Security\PEncoder.class
 com\oriun\oriun\Models\Location_sport_sportsModel.class

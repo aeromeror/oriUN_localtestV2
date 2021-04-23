@@ -10,7 +10,7 @@ public class User_sportsPK implements Serializable{
     private String USER_NAME;
     @Column(unique = true, nullable = false)
     private String NAME_SPORT;
-
+	
 	public String getNAME_SPORT() {
 		return this.NAME_SPORT;
 	}

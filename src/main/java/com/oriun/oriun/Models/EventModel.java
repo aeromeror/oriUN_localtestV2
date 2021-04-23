@@ -1,6 +1,4 @@
 package com.oriun.oriun.Models;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -40,10 +38,18 @@ public class EventModel {
 
     private String EVENT_TITLE;
 
-	
+    private Date CREATION_DATE;
 
 
     public EventModel() {
+    }
+
+    public Date getCREATION_DATE() {
+        return CREATION_DATE;
+    }
+
+    public void setCREATION_DATE(Date CREATION_DATE) {
+        this.CREATION_DATE = CREATION_DATE;
     }
 
     public EventModel(Integer ID_EVENT, String USER_NAME, String NAME_LOC_SPORT, String NAME_SPORT, String EVENT_DESCRIPTION, Date EVENT_INIT, Date EVENT_END, double CAPACITY, String OTHER_SPORT, Time EVENT_INIT_HOUR, Time EVENT_FINISH_HOUR) {

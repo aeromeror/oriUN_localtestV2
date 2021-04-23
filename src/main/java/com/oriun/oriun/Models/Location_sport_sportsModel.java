@@ -8,7 +8,9 @@ import javax.persistence.*;
 public class Location_sport_sportsModel {
     @EmbeddedId
     private Location_sportsPK location_sportsPK;
-
+	public Location_sport_sportsModel(){
+		this.location_sportsPK= new Location_sportsPK();
+	}
 	public String getNAME_LOC_SPORT() {
 		return this.location_sportsPK.getNAME_LOC_SPORT();
 	}

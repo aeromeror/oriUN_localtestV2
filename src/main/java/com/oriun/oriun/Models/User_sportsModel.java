@@ -8,7 +8,9 @@ import javax.persistence.*;
 public class User_sportsModel{
     @EmbeddedId
     private User_sportsPK user_sportsPK;
-
+	public User_sportsModel(){
+		this.user_sportsPK= new User_sportsPK();
+	}
     public String getUSER_NAME() {
 		return this.user_sportsPK.getUSER_NAME();
 	}
