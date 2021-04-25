@@ -34,7 +34,7 @@ public class NotificationService {
         return notificationRepository.findByNAME_SPORT(namesport);
     }
 
-
+    
     
     public NotificationModel updateNotification(int id_notification,NotificationModel newnotif) {
         Optional<NotificationModel> oldnotif = notificationRepository.findById(id_notification);

@@ -98,6 +98,7 @@ public class UserController {
 		//return us.get();
 		encoder= new Encoder();
 		String pass=((encoder.encode(user.get("password").toString())));
+		System.out.println(pass);
 		if(us.isPresent()){
 			String token = getJWTToken(user.get("user_name").toString());
 			if(us.get().getPASSWORD().equals(pass)){ 
