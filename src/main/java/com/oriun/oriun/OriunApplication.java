@@ -28,6 +28,7 @@ public class OriunApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("https://oriun.herokuapp.com");
+                registry.addMapping("/**").allowedOrigins("");
             }
         };
     }
