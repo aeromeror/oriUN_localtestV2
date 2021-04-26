@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.oriun.oriun.Models.LocationsibuModel;
 import com.oriun.oriun.Models.LocationsportModel;
 import com.oriun.oriun.Repositories.LocationsportRepository;
 
@@ -41,6 +42,13 @@ public class LocationsportService {
             return updelement.get();
         }
         
+    }
+    public boolean deleteLocationsport(LocationsportModel locationsport){
+        if(locationsportRepository.existsById(locationsport.getNAME_LOC_SPORT())){
+            locationsportRepository.delete(locationsport);
+            return true;
+        }
+        return false;
     }
 
     /*public ResponseEntity<?> deleteElement(String elementID) {

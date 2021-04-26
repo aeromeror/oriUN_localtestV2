@@ -37,9 +37,12 @@ public class LocationSibuService {
             return oldlocationsibu.get();
         }
     }
-    public LocationsibuModel deleteLocationsibu(LocationsibuModel locationsibu){
-        locationsibuRepository.delete(locationsibu);
-        return locationsibu;
+    public boolean deleteLocationsibu(LocationsibuModel locationsibu){
+        if(locationsibuRepository.existsById(locationsibu.getNAME_LOCATION())){
+            locationsibuRepository.delete(locationsibu);
+            return true;
+        }
+        return false;
     }
 
 }
