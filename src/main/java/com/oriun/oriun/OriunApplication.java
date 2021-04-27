@@ -22,7 +22,7 @@ public class OriunApplication {
 		SpringApplication.run(OriunApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
             @Override
@@ -30,5 +30,5 @@ public class OriunApplication {
                 registry.addMapping("/**").allowedOrigins("https://oriun.herokuapp.com");
             }
         };
-    }
+    }*/
 }
