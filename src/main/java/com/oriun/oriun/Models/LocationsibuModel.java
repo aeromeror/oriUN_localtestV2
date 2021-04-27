@@ -50,4 +50,10 @@ public class LocationsibuModel {
 	}
 	public LocationsibuModel(){
 	}
+
+	
+    
+
+	
+
 }

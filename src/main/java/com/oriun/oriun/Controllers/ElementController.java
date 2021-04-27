@@ -25,9 +25,5 @@ public class ElementController {
     public void borrarElemento(@RequestParam("id") int id){
         elementService.deleteElement(id);
     }
-    @PutMapping("/elementupd")
-    public ElementModel actualizarElemento(@RequestBody ElementModel element){
-        //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
-        return this.elementService.updateElement(element.getID_ELEMENT(),element);
-    }
+    //THE GAME
 }

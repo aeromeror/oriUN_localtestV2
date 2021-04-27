@@ -9,17 +9,16 @@ public class LocationsportModel {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private String NAME_LOC_SPORT;
-    public LocationsportModel(){
-    }
+
     public LocationsportModel(String name_loc_sport){
             this.NAME_LOC_SPORT=name_loc_sport;
     }
 
-	public String getNAME_LOC_SPORT() {
+	public String getName_loc_sport() {
 		return this.NAME_LOC_SPORT;
 	}
 
-	public void setNAME_LOC_SPORT(String name_loc_sport) {
+	public void setName_loc_sport(String name_loc_sport) {
 		this.NAME_LOC_SPORT = name_loc_sport;
 	}
 

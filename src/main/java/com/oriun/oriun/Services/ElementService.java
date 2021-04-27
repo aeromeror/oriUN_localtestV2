@@ -30,19 +30,13 @@ public class ElementService {
     }
 
     public ElementModel updateElement(int elementID,ElementModel newelement) {
-        if(elementRepository.existsById(elementID)){
-            Optional<ElementModel> oldelement = elementRepository.findById(elementID);
-            if(oldelement.isPresent()){
-                elementRepository.delete(oldelement.get());
-                ElementModel updatedElement = elementRepository.save(newelement);
-                return updatedElement;
-            }else{
-                return oldelement.get();
-            }
-        }
-        else{
-            newelement.setELEMENT_NAME("Elemento no actualizado,no se encuentra valor antiguo");
-            return newelement;
+        Optional<ElementModel> oldelement = elementRepository.findById(elementID);
+        if(oldelement.isPresent()){
+            elementRepository.delete(oldelement.get());
+            ElementModel updatedElement = elementRepository.save(newelement);
+            return updatedElement;
+        }else{
+            return oldelement.get();
         }
     }
 

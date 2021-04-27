@@ -15,7 +15,4 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     @Query(value = "SELECT other_sport FROM oriun_prueba.event  WHERE other_sport IS NOT NULL ",
        nativeQuery = true)
     List<String>findByOtherSports();
-    /*@Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_title= "+event_t,
-            nativeQuery = true)
-    List<String>findByEvent_title(String event_t);*/
 }
