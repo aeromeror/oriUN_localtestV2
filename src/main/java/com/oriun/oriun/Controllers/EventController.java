@@ -85,4 +85,15 @@ public class EventController {
             return null;
         }
     }
+    @PostMapping("/asistirevent")
+    public int asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
+        if(eventService.existEvent(id_eve)){
+            User_eventModel asistencia= new User_eventModel();
+            asistencia.setID_EVENT(id_eve);
+            asistencia.setUSER_NAME(username);
+            user_eventService.saveUser_event(asistencia);
+            return  id_eve;
+        }
+        return 0;
+    }
 }

@@ -36,11 +36,6 @@ public class UserController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
-	@GetMapping("/")
-    public String inicio(){
-        return "Hola esta funcionando";
-    }
-	
 	@GetMapping("/user")
     public ArrayList<UserModel> obtenerUsuarios(){
         return userService.getUsers();

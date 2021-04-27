@@ -9,7 +9,6 @@ C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Con
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Services\NotificationService.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Models\ElementModel.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Controllers\NotificationController.java
-C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Websocket\NotPushController.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Controllers\SportController.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Repositories\NotificationRepository.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Repositories\LocationsibuRepository.java
@@ -45,8 +44,6 @@ C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Mod
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Services\User_sportsService.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Controllers\EventController.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Models\RolesModel.java
-C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Websocket\WebSocketConfig.java
-C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Controllers\LocationSportController.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Controllers\RolesController.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Services\LocationsportService.java
 C:\Users\andre\OneDrive\Documents\GitHub\oriUN\src\main\java\com\oriun\oriun\Services\SportService.java

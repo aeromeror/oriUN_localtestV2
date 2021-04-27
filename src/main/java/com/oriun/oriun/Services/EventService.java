@@ -48,4 +48,7 @@ public class EventService {
     public List<String> getOtherSports(){
         return eventRepository.findByOtherSports();
     }
+    public Boolean existEvent(int id_eve){
+        return eventRepository.existsById(id_eve);
+    }
 }
