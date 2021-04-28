@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import com.oriun.oriun.Models.LocationsibuModel;
 import com.oriun.oriun.Models.LocationsportModel;
 import com.oriun.oriun.Repositories.LocationsportRepository;
 

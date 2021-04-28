@@ -15,4 +15,7 @@ public interface User_eventRepository extends JpaRepository<User_eventModel,User
     /*
     @Query("select a from user_event a where a. USER_NAME = ?1" )
     public List<User_eventModel>findByUSER_NAME(String username);*/
+    @Query(value = "SELECT * FROM oriun_prueba.user_event  WHERE ID_EVENT = ?1 ",
+            nativeQuery = true)
+    List<User_eventModel>findByID_EVENT(int idevent);
 }

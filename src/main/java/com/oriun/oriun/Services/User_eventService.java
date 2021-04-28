@@ -24,7 +24,10 @@ public class User_eventService {
     }
     public List< User_eventModel>  getUser_event(String name){
         return user_eventRepository.findByUSER_NAME(name);
-    } 
+    }
+    public List< User_eventModel>  getUser_eventbyEvent(int id_event){
+        return user_eventRepository.findByID_EVENT(id_event);
+    }
     public User_eventModel saveUser_event(User_eventModel user){
         return user_eventRepository.save(user);
     }

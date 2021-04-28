@@ -86,14 +86,19 @@ public class EventController {
         }
     }
     @PostMapping("/asistirevent")
-    public int asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
+    public boolean asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
         if(eventService.existEvent(id_eve)){
             User_eventModel asistencia= new User_eventModel();
-            asistencia.setID_EVENT(id_eve);
-            asistencia.setUSER_NAME(username);
-            user_eventService.saveUser_event(asistencia);
-            return  id_eve;
+            Optional<EventModel> oem=eventService.getEventById(id_eve);
+            double ec=oem.get().getCAPACITY();
+            double len_asis_event=user_eventService.getUser_eventbyEvent(id_eve).size();
+            if(len_asis_event<ec){
+                asistencia.setID_EVENT(id_eve);
+                asistencia.setUSER_NAME(username);
+                user_eventService.saveUser_event(asistencia);
+                return  true;
+            }
         }
-        return 0;
+        return false;
     }
 }
