@@ -36,4 +36,7 @@ public class User_eventService {
         return new ResponseEntity<>(
                                          HttpStatus.OK);
     }
+    public boolean UserinEvent(int id_event,String name){
+        return 0<user_eventRepository.findUSER_NAMEinID_EVENT(id_event,name).size();
+    }
 }

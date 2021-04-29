@@ -92,7 +92,7 @@ public class EventController {
             Optional<EventModel> oem=eventService.getEventById(id_eve);
             double ec=oem.get().getCAPACITY();
             double len_asis_event=user_eventService.getUser_eventbyEvent(id_eve).size();
-            if(len_asis_event<ec){
+            if(len_asis_event<ec && !user_eventService.UserinEvent(id_eve,username)){
                 asistencia.setID_EVENT(id_eve);
                 asistencia.setUSER_NAME(username);
                 user_eventService.saveUser_event(asistencia);
