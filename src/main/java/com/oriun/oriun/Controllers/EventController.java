@@ -2,6 +2,8 @@ package com.oriun.oriun.Controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.oriun.oriun.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.EventModel;
@@ -19,6 +21,8 @@ public class EventController {
     User_eventService user_eventService;
     @Autowired
     NotificationService notificationService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/events")
     public ArrayList<EventModel> obtenerEventos(){
@@ -87,7 +91,7 @@ public class EventController {
     }
     @PostMapping("/asistirevent")
     public boolean asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
-        if(eventService.existEvent(id_eve)){
+        if(eventService.existEvent(id_eve) && userService.existUser(username)){
             User_eventModel asistencia= new User_eventModel();
             Optional<EventModel> oem=eventService.getEventById(id_eve);
             double ec=oem.get().getCAPACITY();

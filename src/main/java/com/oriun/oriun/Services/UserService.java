@@ -36,4 +36,7 @@ public class UserService {
             return olduser.get();
         }
     }
+    public Boolean existUser(String userid){
+        return userRepository.existsById(userid);
+    }
 }
