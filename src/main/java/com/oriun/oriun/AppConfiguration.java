@@ -8,7 +8,7 @@ import reactor.core.publisher.Sinks;
 
 @Configuration
 public class AppConfiguration {
-     private static final String NOTIFICATIONS_API_ENDPOINT = "https://wise-brook-308119.ue.r.appspot.com/notifications";
+     private static final String NOTIFICATIONS_API_ENDPOINT = "localhost:8081/notifications";
 
     @Bean
     public WebClient webClient(){
