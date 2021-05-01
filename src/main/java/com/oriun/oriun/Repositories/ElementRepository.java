@@ -1,6 +1,5 @@
 package com.oriun.oriun.Repositories;
 import com.oriun.oriun.Models.ElementModel;
-import com.oriun.oriun.Models.EventModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Modifying;
