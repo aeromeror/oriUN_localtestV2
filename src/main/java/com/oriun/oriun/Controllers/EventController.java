@@ -6,11 +6,15 @@ import java.util.Optional;
 import com.oriun.oriun.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+
 import com.oriun.oriun.Models.EventModel;
 import com.oriun.oriun.Models.NotificationModel;
+import com.oriun.oriun.Models.SportModel;
 import com.oriun.oriun.Models.User_eventModel;
 import com.oriun.oriun.Services.EventService;
 import com.oriun.oriun.Services.NotificationService;
+import com.oriun.oriun.Services.SportService;
 import com.oriun.oriun.Services.User_eventService;
 @RestController
 //@RequestMapping("/sports")
@@ -23,7 +27,8 @@ public class EventController {
     NotificationService notificationService;
     @Autowired
     UserService userService;
-
+    @Autowired
+    SportService sportService;
     @GetMapping("/events")
     public ArrayList<EventModel> obtenerEventos(){
         return eventService.getEvents();
@@ -66,7 +71,12 @@ public class EventController {
     public List<EventModel> obtenerOthers(){
         return eventService.getOtherEvents();
     }
-
+    @GetMapping("/otherscount")
+    public List<Object[]> obtenerOthersCount(){
+        //ArrayList<SportModel> sports = sportService.getSports();
+        //List<Object[]> othersports=eventService.getOtherSportsCount();
+        return eventService.getOtherSportsCount();
+    }
     @GetMapping("/othersports")
     public List<String> obtenerOtherSports(){
         return eventService.getOtherSports();

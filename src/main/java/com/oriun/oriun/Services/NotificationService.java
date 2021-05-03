@@ -41,6 +41,10 @@ public class NotificationService {
         return notificationRepository.findByNAME_SPORT(namesport);
     }
 
+    public List<NotificationModel> getNotificationByEvent(int id_event) {
+        return notificationRepository.findByEVENT(id_event);
+    }
+
     public List<NotificationModel> getNotificationByDate(Date date) {
         return notificationRepository.findByNOTIFICATION_DATE(date);
     }
@@ -64,7 +68,10 @@ public class NotificationService {
         notificationRepository.delete(notification);
         return notification;
     }
-    
+
+    public void updateNotificationSport(String new_sport,int id_event){
+        notificationRepository.updateNotificationSport(new_sport, id_event);
+    }
     
     //TEST PUSH NOTIFICATIONS
     @Autowired
