@@ -29,8 +29,9 @@ public class ElementService {
         return elementRepository.findById(element_id);
     }
 
-    public ElementModel updateElement(int elementID,ElementModel newelement) {
-        if(elementRepository.existsById(elementID)){
+    public ElementModel updateElement(ElementModel newelement) {
+        if(elementRepository.existsById(newelement.getID_ELEMENT())){
+        /*if(elementRepository.existsById(elementID)){
             Optional<ElementModel> oldelement = elementRepository.findById(elementID);
             if(oldelement.isPresent()){
                 elementRepository.delete(oldelement.get());
@@ -38,12 +39,19 @@ public class ElementService {
                 return updatedElement;
             }else{
                 return oldelement.get();
-            }
+            }*/
+            int ID=newelement.getID_ELEMENT();
+            String nl=newelement.getNAME_LOCATION();
+            String ns= newelement.getNAME_SPORT();
+            String des= newelement.getDESCRIPTION();
+            boolean av= newelement.isAVAILABLE();
+            String name= newelement.getELEMENT_NAME();
+            elementRepository.updatebyID(ID,av,des,name,nl,ns);
         }
         else{
             newelement.setELEMENT_NAME("Elemento no actualizado,no se encuentra valor antiguo");
-            return newelement;
         }
+        return newelement;
     }
 
     /*public ResponseEntity<?> deleteElement(int elementID) {
@@ -52,15 +60,15 @@ public class ElementService {
         return ResponseEntity.ok().build();
     }*/
     public ArrayList<ElementModel> getElementsLsibu(String name_lsibu){
-        ArrayList<ElementModel> AL1=(ArrayList<ElementModel>)elementRepository.findAll();
+        /*ArrayList<ElementModel> AL1=(ArrayList<ElementModel>)elementRepository.findAll();
         Iterator<ElementModel> AL1_iterator=AL1.iterator();
         while(AL1_iterator.hasNext()){
             ElementModel em=AL1_iterator.next();
             if(!em.getNAME_LOCATION().equals(name_lsibu)){
                 AL1_iterator.remove();
             }
-        }
-        return AL1;
+        }*/
+        return elementRepository.findbyLocation(name_lsibu);
     }
     public ElementModel saveElementLsibu(ElementModel element,String name_lsibu){
         if (element.getNAME_LOCATION().equals(name_lsibu)){
@@ -90,5 +98,11 @@ public class ElementService {
         if(elementRepository.existsById(id)){
             elementRepository.deleteById(id);
         }
+    }
+    public int  changeavalaible(int id){
+        if(elementRepository.existsById(id)){
+           return elementRepository.changeAvailablebyID(id);
+        }
+        return 0;
     }
 }

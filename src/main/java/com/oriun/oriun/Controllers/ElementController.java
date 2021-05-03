@@ -28,6 +28,11 @@ public class ElementController {
     @PutMapping("/elementupd")
     public ElementModel actualizarElemento(@RequestBody ElementModel element){
         //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
-        return this.elementService.updateElement(element.getID_ELEMENT(),element);
+        return elementService.updateElement(element);
+    }
+    @PutMapping("/elementcs")
+    public int CambiarEstadoElemento(@RequestParam("id") int id){
+        //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
+        return elementService.changeavalaible(id);
     }
 }
