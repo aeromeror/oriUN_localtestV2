@@ -28,11 +28,11 @@ public class User_eventService {
     public List< User_eventModel>  getUser_eventbyEvent(int id_event){
         return user_eventRepository.findByID_EVENT(id_event);
     }
-    public User_eventModel saveUser_event(User_eventModel user){
-        return user_eventRepository.save(user);
+    public User_eventModel saveUser_event(User_eventModel user_event){
+        return user_eventRepository.save(user_event);
     }
-    public ResponseEntity deleteUserEvent(User_eventModel event){
-        user_eventRepository.delete(event);
+    public ResponseEntity deleteUserEvent(User_eventModel user_event){
+        user_eventRepository.delete(user_event);
         return new ResponseEntity<>(
                                          HttpStatus.OK);
     }

@@ -61,4 +61,7 @@ public class EventService {
     public void updateEventSport(String sport_name){
         eventRepository.updateEventSport(sport_name);
     }
+    public String creadorevento(int id_eve){
+        return getEventById(id_eve).get().getUSER_NAME();
+    }
 }

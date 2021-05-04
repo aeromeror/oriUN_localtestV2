@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.oriun.oriun.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -135,5 +137,28 @@ public class EventController {
             }
         }
         return false;
+    }
+    @DeleteMapping("/LeaveEvent")
+    public ResponseEntity abandonarevento(@RequestParam("id_user") String username, @RequestParam("id_event") int id_eve){
+        if(eventService.existEvent(id_eve) && userService.existUser(username)){
+            if(user_eventService.UserinEvent(id_eve,username)){
+                if(!eventService.creadorevento(id_eve).equals(username)){
+                    User_eventModel asistencia= new User_eventModel();
+                    asistencia.setID_EVENT(id_eve);
+                    asistencia.setUSER_NAME(username);
+                    return user_eventService.deleteUserEvent(asistencia);
+                }
+                else{
+                    return new ResponseEntity<>("El creador("+eventService.creadorevento(id_eve)+") no puede abandonar el evento",
+                            HttpStatus.BAD_REQUEST );
+                }
+            }
+            else{
+                return new ResponseEntity<>("Usuario no se encuentra en el evento",
+                        HttpStatus.I_AM_A_TEAPOT );
+            }
+        }
+        return new ResponseEntity<>("Evento o Usuario inexistentes",
+                HttpStatus.NOT_FOUND );
     }
 }
