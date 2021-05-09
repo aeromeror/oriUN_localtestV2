@@ -22,6 +22,26 @@ public class UserModel {
     @Column(columnDefinition="text")
     private String PASSWORD;
 
+    private String EMAIL;
+
+    private boolean ENABLED;
+
+    public String getEMAIL() {
+        return this.EMAIL;
+    }
+
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+    }
+
+    public boolean isENABLED() {
+        return this.ENABLED;
+    }
+
+    public void setENABLED(boolean ENABLED) {
+        this.ENABLED = ENABLED;
+    }
+
     //private String TOKEN;
 
     public UserModel() {

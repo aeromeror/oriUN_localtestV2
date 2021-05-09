@@ -5,8 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.oriun.oriun.Models.ConfirmationTokenModel;
 import com.oriun.oriun.Models.UserModel;
+import com.oriun.oriun.Repositories.ConfirmationTokenRepository;
 import com.oriun.oriun.Security.Encoder;
+import com.oriun.oriun.Services.EmailSenderService;
 import com.oriun.oriun.Services.UserService;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.server.ResponseStatusException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -29,9 +34,14 @@ import org.springframework.security.core.authority.AuthorityUtils;
 @RestController
 public class UserController {
 	@Autowired
-
     UserService userService;
 	Encoder encoder; 
+
+	@Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -73,28 +83,67 @@ public class UserController {
 
 	@PostMapping("/userreg")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity register(@RequestParam("user") String user_name, @RequestParam("password") String password) {
+	public ResponseEntity register(@RequestParam("user") String user_name, @RequestParam("password") String password,@RequestParam("email") String email) {
 		UserModel user= new UserModel();
 		//user.setPASSWORD(passwordEncoder.encode(password));
 		encoder= new Encoder();
 		user.setPASSWORD((encoder.encode(password)));
+		user.setEMAIL(email);
+		user.setENABLED(false);
 		System.out.println(user.getPASSWORD());
 		user.setUSER_NAME(user_name);
 		user.setROL_NAME("Usuario");
 		Optional<UserModel> us=userService.getUser(user_name);
+		UserModel us2 = userService.getUserByEmail(email);
 		if(us.isPresent()){
 			return new ResponseEntity<>(
 			"your user name is alredy taken "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
 			HttpStatus.UNPROCESSABLE_ENTITY);
 		}else{
-			UserModel res=userService.saveUser(user);
-			return new ResponseEntity<>(
-				"your user register is succesfull "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
-				HttpStatus.OK);
+			if(us2 != null){
+				return new ResponseEntity<>(
+			"your email is alredy registereg "+email+" role"+user.getROL_NAME(), 
+			HttpStatus.UNPROCESSABLE_ENTITY);
+			}else{
+				UserModel res=userService.saveUser(user);
+				ConfirmationTokenModel confirmationToken = new ConfirmationTokenModel(user.getUSER_NAME());
+            	confirmationTokenRepository.save(confirmationToken);
+				SimpleMailMessage mailMessage = new SimpleMailMessage();
+				mailMessage.setTo(user.getEMAIL());
+				mailMessage.setSubject("Complete Registration!");
+				mailMessage.setFrom("oriunmail@gmail.com");
+				mailMessage.setText("To confirm your account, please click here : "
+				+"http://localhost:8081/confirm-account?token="+confirmationToken.getCONFIRMATION_TOKEN());
+				emailSenderService.sendEmail(mailMessage);
+				return new ResponseEntity<>(
+					"your user register is succesfull "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+					HttpStatus.OK);
+			}
 		}
 		
 	}
 	
+	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    public ResponseEntity confirmUserAccount(@RequestParam("token")String confirmationToken)
+    {
+        ConfirmationTokenModel token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+
+        if(token != null)
+        {
+            userService.updateUserState(token.getUSER_NAME());
+            return new ResponseEntity<>(
+					"your user register is succesfull "+token.getUSER_NAME(), 
+					HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(
+			"error invalid token", 
+			HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+    }
+
 	@PostMapping("/userlog")
 	public ResponseEntity login(@RequestBody HashMap<String,Object> user){
                 // Note: The parameters are user_name and password

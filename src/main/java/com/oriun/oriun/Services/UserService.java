@@ -23,6 +23,12 @@ public class UserService {
     public Optional< UserModel>  getUser(String name){
         return userRepository.findById(name);
     } 
+    public UserModel getUserByEmail(String email){
+        return userRepository.findByEMAIL(email);
+    }
+    public void updateUserState(String user_name){
+        userRepository.updateUserState(user_name);
+    }
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);
     }

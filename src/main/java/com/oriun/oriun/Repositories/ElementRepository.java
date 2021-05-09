@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Repository
+
 public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Modifying
     @Query(value = "UPDATE oriun_prueba.element SET AVAILABLE =NOT AVAILABLE WHERE ID_ELEMENT= ?1",
