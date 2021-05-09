@@ -1,5 +1,6 @@
 com\oriun\oriun\Repositories\EventRepository.class
 com\oriun\oriun\Services\EventService.class
+com\oriun\oriun\Services\EmailSenderService.class
 com\oriun\oriun\Models\ElementModel.class
 com\oriun\oriun\Controllers\LocationsSibuController.class
 com\oriun\oriun\Repositories\User_eventRepository.class
@@ -24,11 +25,13 @@ com\oriun\oriun\Repositories\NotificationRepository.class
 com\oriun\oriun\Models\RolesModel.class
 com\oriun\oriun\Models\SportModel.class
 com\oriun\oriun\Models\LocationsportModel.class
+com\oriun\oriun\Models\ConfirmationTokenModel.class
 com\oriun\oriun\Repositories\UserRepository.class
 com\oriun\oriun\Services\User_sportsService.class
 com\oriun\oriun\Services\NotificationService.class
 com\oriun\oriun\Services\SportService.class
 com\oriun\oriun\Models\User_sportsPK.class
+com\oriun\oriun\Controllers\User_eventController.class
 com\oriun\oriun\Controllers\LocationSportController.class
 com\oriun\oriun\Controllers\RolesController.class
 com\oriun\oriun\Models\LocationsibuModel.class
@@ -37,6 +40,7 @@ com\oriun\oriun\Services\User_eventService.class
 com\oriun\oriun\Models\NotificationModel.class
 com\oriun\oriun\Repositories\User_sportsRepository.class
 com\oriun\oriun\Login\HelloWorldController.class
+com\oriun\oriun\Repositories\ConfirmationTokenRepository.class
 com\oriun\oriun\Models\User_eventPK.class
 com\oriun\oriun\Repositories\RolesRepository.class
 com\oriun\oriun\OriunApplication$1.class
