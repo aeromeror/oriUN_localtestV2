@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<UserModel,String>{
     UserModel findByEMAIL(String email);
 
   @Modifying
-  @Query(value = "UPDATE oriun_prueba.user SET ENABLED = 1,WHERE USER_NAME= ?1",
+  @Query(value = "UPDATE oriun_prueba.user SET ENABLED = 1 WHERE USER_NAME= ?1",
           nativeQuery = true)
   void updateUserState(String user_name);
 }

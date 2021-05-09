@@ -123,13 +123,14 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/confirm-account", method= {RequestMethod.POST})
     public ResponseEntity confirmUserAccount(@RequestParam("token")String confirmationToken)
     {
         ConfirmationTokenModel token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 
         if(token != null)
         {
+			System.out.println(token.getUSER_NAME());
             userService.updateUserState(token.getUSER_NAME());
             return new ResponseEntity<>(
 					"your user register is succesfull "+token.getUSER_NAME(), 
@@ -154,19 +155,24 @@ public class UserController {
 		String pass=((encoder.encode(user.get("password").toString())));
 		System.out.println(pass);
 		if(us.isPresent()){
-			String token = getJWTToken(user.get("user_name").toString());
-			if(us.get().getPASSWORD().equals(pass)){ 
-                                HashMap <String,Object> result= new HashMap();
-                                result.put("TOKEN",token);
-                                result.put("USER_NAME",us.get().getUSER_NAME()); 
-                                result.put("ROL_NAME",us.get().getROL_NAME());
-				return new ResponseEntity<>(
-                                        result, HttpStatus.OK);
-				//return us.get();
+			if(us.get().isENABLED()){
+				String token = getJWTToken(user.get("user_name").toString());
+				if(us.get().getPASSWORD().equals(pass)){ 
+									HashMap <String,Object> result= new HashMap();
+									result.put("TOKEN",token);
+									result.put("USER_NAME",us.get().getUSER_NAME()); 
+									result.put("ROL_NAME",us.get().getROL_NAME());
+					return new ResponseEntity<>(
+											result, HttpStatus.OK);
+					//return us.get();
+				}else{
+					//throw new MyException("wrong password");
+					throw new ResponseStatusException(
+					HttpStatus.NOT_FOUND, "invalid password");
+				}
 			}else{
-				//throw new MyException("wrong password");
 				throw new ResponseStatusException(
-				HttpStatus.NOT_FOUND, "invalid password");
+					HttpStatus.NOT_FOUND, "User is Not authenticated");
 			}
 		}
 		else{

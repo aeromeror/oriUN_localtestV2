@@ -14,7 +14,7 @@ public class ConfirmationTokenModel {
     @Column(unique = true, nullable = false)
     private Integer TOKEN_ID;
     private String CONFIRMATION_TOKEN;
-    private Date CREATED_DATE;
+    private Date CREATE_DATE;
     private String USER_NAME;
 
     public Integer getTOKEN_ID() {
@@ -33,12 +33,12 @@ public class ConfirmationTokenModel {
         this.CONFIRMATION_TOKEN = CONFIRMATION_TOKEN;
     }
 
-    public Date getCREATED_DATE() {
-        return this.CREATED_DATE;
+    public Date getCREATE_DATE() {
+        return this.CREATE_DATE;
     }
 
-    public void setCREATED_DATE(Date CREATED_DATE) {
-        this.CREATED_DATE = CREATED_DATE;
+    public void setCREATE_DATE(Date CREATE_DATE) {
+        this.CREATE_DATE = CREATE_DATE;
     }
 
     public String getUSER_NAME() {
@@ -48,10 +48,12 @@ public class ConfirmationTokenModel {
     public void setUSER_NAME(String USER_NAME) {
         this.USER_NAME = USER_NAME;
     }
-
+    public ConfirmationTokenModel() {
+        
+    }
     public ConfirmationTokenModel(String user) {
         this.USER_NAME = user;
-        this.CREATED_DATE = new Date(0, 0, 0);
+        this.CREATE_DATE = new Date(0, 0, 0);
         this.CONFIRMATION_TOKEN = UUID.randomUUID().toString();
     }
 }
