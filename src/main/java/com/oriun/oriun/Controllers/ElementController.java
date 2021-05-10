@@ -1,6 +1,7 @@
 package com.oriun.oriun.Controllers;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.ElementModel;
 import com.oriun.oriun.Services.ElementService;
@@ -26,7 +27,7 @@ public class ElementController {
         elementService.deleteElement(id);
     }
     @PutMapping("/elementupd")
-    public ElementModel actualizarElemento(@RequestBody ElementModel element){
+    public ResponseEntity actualizarElemento(@RequestBody ElementModel element){
         //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
         return elementService.updateElement(element);
     }

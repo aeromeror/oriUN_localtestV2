@@ -6,8 +6,12 @@ import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.ElementModel;
 import com.oriun.oriun.Repositories.ElementRepository;
+import com.oriun.oriun.Repositories.SportRepository;
+import com.oriun.oriun.Repositories.LocationsibuRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +19,10 @@ import org.springframework.stereotype.Service;
 public class ElementService {
     @Autowired
     ElementRepository elementRepository;
+    @Autowired
+    SportRepository sportRepository;
+    @Autowired
+    LocationsibuRepository locationsibuRepository;
 
     public ArrayList<ElementModel> getElements(){
         return (ArrayList<ElementModel>)elementRepository.findAll();
@@ -29,7 +37,7 @@ public class ElementService {
         return elementRepository.findById(element_id);
     }
 
-    public ElementModel updateElement(ElementModel newelement) {
+    public ResponseEntity updateElement(ElementModel newelement) {
         if(elementRepository.existsById(newelement.getID_ELEMENT())){
         /*if(elementRepository.existsById(elementID)){
             Optional<ElementModel> oldelement = elementRepository.findById(elementID);
@@ -42,16 +50,30 @@ public class ElementService {
             }*/
             int ID=newelement.getID_ELEMENT();
             String nl=newelement.getNAME_LOCATION();
-            String ns= newelement.getNAME_SPORT();
-            String des= newelement.getDESCRIPTION();
-            boolean av= newelement.isAVAILABLE();
-            String name= newelement.getELEMENT_NAME();
-            elementRepository.updatebyID(ID,av,des,name,nl,ns);
+            if(!locationsibuRepository.existsById(nl)){
+                return new ResponseEntity<>("Ubicacion no encontrada",
+                        HttpStatus.NOT_FOUND );
+            }
+            else{
+                String ns= newelement.getNAME_SPORT();
+                if(!sportRepository.existsById(ns)){
+                    return new ResponseEntity<>("Deporte no encontrado",
+                            HttpStatus.NOT_FOUND );
+                }
+                else{
+                    String des= newelement.getDESCRIPTION();
+                    boolean av= newelement.isAVAILABLE();
+                    String name= newelement.getELEMENT_NAME();
+                    elementRepository.updatebyID(ID,av,des,name,nl,ns);
+                    return new ResponseEntity<>("Actualizado",
+                            HttpStatus.OK);
+                }
+            }
         }
         else{
-            newelement.setELEMENT_NAME("Elemento no actualizado,no se encuentra valor antiguo");
+            return new ResponseEntity<>("Elemento antiguo no encontrado",
+                    HttpStatus.BAD_REQUEST );
         }
-        return newelement;
     }
 
     /*public ResponseEntity<?> deleteElement(int elementID) {
