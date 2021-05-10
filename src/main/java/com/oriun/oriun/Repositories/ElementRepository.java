@@ -24,5 +24,11 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_LOCATION=?1",
             nativeQuery = true)
     ArrayList<ElementModel> findbyLocation(String name_location);
+    @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_SPORT=?1",
+            nativeQuery = true)
+    ArrayList<ElementModel> findbySport(String name_sport);
+    @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE",
+            nativeQuery = true)
+    ArrayList<ElementModel> findAvailables();
     //public List<ElementModel>findByNAME_SPORT();
 }

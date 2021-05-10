@@ -22,6 +22,14 @@ public class ElementController {
     public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu){
         return elementService.getElementsLsibu(name_lsibu);
     }
+    @GetMapping("/elntofsport")
+    public ArrayList<ElementModel> obtenerElementosSport(@RequestParam("name_sport") String name_sport){
+        return elementService.getElementsSport(name_sport);
+    }
+    @GetMapping("/elntav")
+    public ArrayList<ElementModel> obtenerElementosAvailable(){
+        return elementService.getElementsAvailable();
+    }
     @DeleteMapping("/noelements")
     public void borrarElemento(@RequestParam("id") int id){
         elementService.deleteElement(id);
