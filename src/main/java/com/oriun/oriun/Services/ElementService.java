@@ -93,25 +93,9 @@ public class ElementService {
         return elementRepository.findbyLocation(name_lsibu);
     }
     public ArrayList<ElementModel> getElementsSport(String name_sport){
-        /*ArrayList<ElementModel> AL1=(ArrayList<ElementModel>)elementRepository.findAll();
-        Iterator<ElementModel> AL1_iterator=AL1.iterator();
-        while(AL1_iterator.hasNext()){
-            ElementModel em=AL1_iterator.next();
-            if(!em.getNAME_LOCATION().equals(name_lsibu)){
-                AL1_iterator.remove();
-            }
-        }*/
         return elementRepository.findbySport(name_sport);
     }
     public ArrayList<ElementModel> getElementsAvailable(){
-        /*ArrayList<ElementModel> AL1=(ArrayList<ElementModel>)elementRepository.findAll();
-        Iterator<ElementModel> AL1_iterator=AL1.iterator();
-        while(AL1_iterator.hasNext()){
-            ElementModel em=AL1_iterator.next();
-            if(!em.getNAME_LOCATION().equals(name_lsibu)){
-                AL1_iterator.remove();
-            }
-        }*/
         return elementRepository.findAvailables();
     }
     public ElementModel saveElementLsibu(ElementModel element,String name_lsibu){
