@@ -62,6 +62,7 @@ public class UserController {
 		UserModel user= new UserModel();
 		//user.setPASSWORD(passwordEncoder.encode(password));
 		user.setPASSWORD((password));
+		user.setENABLED(true);
 		encoder= new Encoder();
 		user.setPASSWORD((encoder.encode(password)));
 		System.out.println(user.getPASSWORD());

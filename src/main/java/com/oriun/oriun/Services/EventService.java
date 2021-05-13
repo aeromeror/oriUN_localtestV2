@@ -21,7 +21,9 @@ public class EventService {
     public ArrayList<EventModel> getEvents(){
         return (ArrayList<EventModel>)eventRepository.findAll();
     }
-    
+    public List<EventModel> getUserEvents(String user_name){
+        return eventRepository.findUserEvents(user_name);
+    }
     public EventModel saveEvent(EventModel event){
         return eventRepository.save(event);
     }

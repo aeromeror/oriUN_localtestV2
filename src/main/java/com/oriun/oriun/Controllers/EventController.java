@@ -79,7 +79,7 @@ public class EventController {
         return ev;
     }
 
-    @GetMapping("/userevents")
+    /*@GetMapping("/userevents")
     public ArrayList<EventModel> obtenerEventosporusuario(@RequestParam("user") String user_name){
         List< User_eventModel> events = user_eventService.getUser_event(user_name);
         ArrayList<EventModel> userevents=new ArrayList<EventModel>();
@@ -89,11 +89,19 @@ public class EventController {
             userevents.add(event.get());
         }
         return userevents;
+    }*/
+
+    @GetMapping("/userevents")
+    public List<EventModel> obtenerEventosUsuario(@RequestParam("user") String user_name){
+        List< EventModel> userevents = eventService.getUserEvents(user_name);
+        return userevents;
     }
+
     @GetMapping("/others")
     public List<EventModel> obtenerOthers(){
         return eventService.getOtherEvents();
     }
+
     @GetMapping("/otherscount")
     public List<Object[]> obtenerOthersCount(){
         //ArrayList<SportModel> sports = sportService.getSports();
