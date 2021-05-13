@@ -59,7 +59,9 @@ public class EventService {
     public List<EventModel> getEventByOther(String other_sport){
         return eventRepository.findByOther_Sport(other_sport);
     }
-
+    public ArrayList<EventModel> getEventVigentes(){
+        return eventRepository.findCurrent();
+    }
     public void updateEventSport(String sport_name){
         eventRepository.updateEventSport(sport_name);
     }

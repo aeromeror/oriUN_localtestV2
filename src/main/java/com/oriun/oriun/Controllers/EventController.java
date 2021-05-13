@@ -36,25 +36,27 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public ArrayList<EventModel> obtenerEventosfecha(){
-        java.util.Date d1 = new java.util.Date();
+    public ArrayList<EventModel> obtenerEventosVigentes(){
+        /*java.util.Date d1 = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
         ArrayList<EventModel> ev=eventService.getEvents();
         EventModel etemp=new EventModel();
         for (int i = 0; i < ev.size(); i++) {
             etemp=ev.get(i);
-            /*if(etemp.getEVENT_FINISH_HOUR().before(sqlDate)){
-                borrarevento(etemp.getID_EVENT());
-                ev.remove(i);
-                i--;
-            }
-            else*/ if(etemp.getEVENT_INIT().before(sqlDate)){
+            //if(etemp.getEVENT_FINISH_HOUR().before(sqlDate)){
+            //    borrarevento(etemp.getID_EVENT());
+            //    ev.remove(i);
+            //    i--;
+            //}
+            //else
+            if(etemp.getEVENT_INIT().before(sqlDate)){
                 ev.remove(i);
                 //System.out.println("Evento ya iniciado: "+etemp.getEVENT_TITLE());
                 i--;
             }
         }
-        return ev;
+        return ev;*/
+        return eventService.getEventVigentes();
     }
 
     @PostMapping("/event")
