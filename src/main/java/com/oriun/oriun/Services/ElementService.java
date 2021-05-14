@@ -38,7 +38,8 @@ public class ElementService {
     }
 
     public ResponseEntity updateElement(ElementModel newelement) {
-        if(elementRepository.existsById(newelement.getID_ELEMENT())){
+        int Id_ne=newelement.getID_ELEMENT();
+        if(elementRepository.existsById(Id_ne)){
         /*if(elementRepository.existsById(elementID)){
             Optional<ElementModel> oldelement = elementRepository.findById(elementID);
             if(oldelement.isPresent()){
@@ -48,7 +49,6 @@ public class ElementService {
             }else{
                 return oldelement.get();
             }*/
-            int ID=newelement.getID_ELEMENT();
             String nl=newelement.getNAME_LOCATION();
             if(!locationsibuRepository.existsById(nl)){
                 return new ResponseEntity<>("Ubicacion no encontrada",
@@ -64,7 +64,7 @@ public class ElementService {
                     String des= newelement.getDESCRIPTION();
                     boolean av= newelement.isAVAILABLE();
                     String name= newelement.getELEMENT_NAME();
-                    elementRepository.updatebyID(ID,av,des,name,nl,ns);
+                    elementRepository.updatebyID(Id_ne,av,des,name,nl,ns);
                     return new ResponseEntity<>("Actualizado",
                             HttpStatus.OK);
                 }
@@ -122,9 +122,15 @@ public class ElementService {
             return oldelement.get();
         }
     }
-    public void deleteElement(int id){
+    public ResponseEntity deleteElement(int id){
         if(elementRepository.existsById(id)){
             elementRepository.deleteById(id);
+            return new ResponseEntity<>("Elemento Eliminado",
+                    HttpStatus.OK);
+        }
+        {
+            return new ResponseEntity<>("Elemento no existia",
+                    HttpStatus.BAD_REQUEST );
         }
     }
     public int  changeavalaible(int id){

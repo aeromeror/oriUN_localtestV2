@@ -2,7 +2,10 @@ package com.oriun.oriun.Controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oriun.oriun.Models.User_sportsModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
@@ -39,7 +42,17 @@ public class SportController {
     }
 
     @DeleteMapping("/nosports")
-    public void borrarDeporte(@RequestParam("sport") String sport){
-        sportService.deleteSport(sport);
+    public ResponseEntity borrarDeporte(@RequestParam("sport") String sport){
+        if(sportService.existSport(sport)){
+            sportService.deleteSport(sport);
+            return new ResponseEntity<>(
+                    "your sport delete is succesfull ",
+                    HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(
+                    "Deporte no encontrado",
+                    HttpStatus.NOT_FOUND);
+        }
     }
 }

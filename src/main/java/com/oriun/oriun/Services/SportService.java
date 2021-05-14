@@ -36,4 +36,7 @@ public class SportService {
     public void deleteSport(String sport){
         sportRepository.deleteById(sport);;
     }
+    public boolean existSport(String sn){
+        return sportRepository.existsById(sn);
+    }
 }

@@ -30,5 +30,10 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE",
             nativeQuery = true)
     ArrayList<ElementModel> findAvailables();
+
+    @Modifying
+    @Query(value = "DELETE from oriun_prueba.element WHERE NAME_LOCATION=?1",
+            nativeQuery = true)
+    int deleteElementsinLSibu(String name);
     //public List<ElementModel>findByNAME_SPORT();
 }

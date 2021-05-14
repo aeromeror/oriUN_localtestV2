@@ -31,8 +31,8 @@ public class ElementController {
         return elementService.getElementsAvailable();
     }
     @DeleteMapping("/noelements")
-    public void borrarElemento(@RequestParam("id") int id){
-        elementService.deleteElement(id);
+    public ResponseEntity borrarElemento(@RequestParam("id") int id){
+        return elementService.deleteElement(id);
     }
     @PutMapping("/elementupd")
     public ResponseEntity actualizarElemento(@RequestBody ElementModel element){
