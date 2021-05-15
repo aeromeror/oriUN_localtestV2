@@ -10,6 +10,8 @@ import com.oriun.oriun.Models.EventModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.oriun.oriun.Repositories.EventRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @Service
 @Transactional
@@ -68,4 +70,9 @@ public class EventService {
     public String creadorevento(int id_eve){
         return getEventById(id_eve).get().getUSER_NAME();
     }
+    
+    public void adiosEvent(int id_event){
+        eventRepository.deleteEvent(id_event);
+    }
+    
 }

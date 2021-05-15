@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
 @Repository
 public interface User_eventRepository extends JpaRepository<User_eventModel,User_eventPK>{
 
@@ -22,4 +23,9 @@ public interface User_eventRepository extends JpaRepository<User_eventModel,User
     @Query(value = "SELECT * FROM oriun_prueba.user_event  WHERE ID_EVENT = ?1 AND USER_NAME = ?2",
             nativeQuery = true)
     List<User_eventModel>findUSER_NAMEinID_EVENT(int idevent,String username);
+
+    @Modifying
+    @Query(value = "DELETE oriun_prueba.user_event WHERE ID_EVENT = ?1"
+    , nativeQuery = true)
+    void deleteUserEvent(int id_event);
 }

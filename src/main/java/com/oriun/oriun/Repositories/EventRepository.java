@@ -33,6 +33,12 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     @Query(value = "SELECT oriun_prueba.event.* FROM oriun_prueba.user_event inner join oriun_prueba.event ON oriun_prueba.event.id_event = oriun_prueba.user_event.id_event where oriun_prueba.user_event.user_name=?1 ",
        nativeQuery = true)
     List<EventModel>findUserEvents(String user_name);
+
+    @Modifying
+    @Query(value = "DELETE FROM oriun_prueba.event WHERE (id_event = ?1)"
+    , nativeQuery = true)
+    void deleteEvent(int id_event);
+    
     /*@Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_title= "+event_t,
             nativeQuery = true)
     List<String>findByEvent_title(String event_t);*/

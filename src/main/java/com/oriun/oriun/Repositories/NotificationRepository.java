@@ -33,6 +33,11 @@ public interface NotificationRepository extends JpaRepository<NotificationModel,
     @Query(value = "UPDATE oriun_prueba.notifications SET name_sport = ?1 WHERE id_event = ?2"
     , nativeQuery = true)
     void updateNotificationSport(String new_sport, int id_event);
+
+    @Modifying
+    @Query(value = "DELETE oriun_prueba.notifications WHERE ID_EVENT = ?1"
+    , nativeQuery = true)
+    void deleteNotification(int id_event);
   //@Query("select u from notifications u where u.USER_NAME = ?1")
   //NotificationModel findByUsername(String username);
     

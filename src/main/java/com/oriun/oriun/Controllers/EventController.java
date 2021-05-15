@@ -171,4 +171,10 @@ public class EventController {
         return new ResponseEntity<>("Evento o Usuario inexistentes",
                 HttpStatus.NOT_FOUND );
     }
+
+    @DeleteMapping("/NoEvent")
+    public void borrarEvento(@RequestParam("id_event") int id_event){
+        eventService.adiosEvent(id_event);
+    }
+
 }
