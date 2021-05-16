@@ -38,7 +38,8 @@ public interface NotificationRepository extends JpaRepository<NotificationModel,
     @Query(value = "DELETE oriun_prueba.notifications WHERE ID_EVENT = ?1"
     , nativeQuery = true)
     void deleteNotification(int id_event);
-  //@Query("select u from notifications u where u.USER_NAME = ?1")
-  //NotificationModel findByUsername(String username);
+   @Query(value= "SELECT oriun_prueba.notifications.* FROM oriun_prueba.notifications inner join oriun_prueba.user_sports ON oriun_prueba.notifications.name_sport = oriun_prueba.user_sports.name_sport where oriun_prueba.user_sports.user_name = ?1"
+    , nativeQuery= true)
+   List<NotificationModel> findByUsername(String username);
     
 }

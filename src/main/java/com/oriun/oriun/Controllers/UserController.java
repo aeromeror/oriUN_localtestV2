@@ -113,8 +113,12 @@ public class UserController {
 				mailMessage.setTo(user.getEMAIL());
 				mailMessage.setSubject("Complete Registration!");
 				mailMessage.setFrom("oriunmail@gmail.com");
-				mailMessage.setText("To confirm your account, please click here : "
-				+"http://localhost:8081/confirm-account?token="+confirmationToken.getCONFIRMATION_TOKEN());
+				String url="https://oriun.herokuapp.com/confirm-account?token="+confirmationToken.getCONFIRMATION_TOKEN();
+        		String content="< href='"+url+"'>"+url+"</a>";
+				String html= ("To confirm your account, please click here : "
+				+url);
+				mailMessage.setText(html);
+				//+"https://oriun.herokuapp.com/confirm-account?token="+confirmationToken.getCONFIRMATION_TOKEN());
 				emailSenderService.sendEmail(mailMessage);
 				return new ResponseEntity<>(
 					"your user register is succesfull "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 

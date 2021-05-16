@@ -36,6 +36,9 @@ public class NotificationService {
         return notificationRepository.findById(id_notification);
     }
 
+    public List<NotificationModel> getNotificationByUser(String username) {
+        return notificationRepository.findByUsername(username);
+    }
     
     public List<NotificationModel> getNotificationBySport(String namesport) {
         return notificationRepository.findByNAME_SPORT(namesport);

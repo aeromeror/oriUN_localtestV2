@@ -49,12 +49,7 @@ public class NotificationController {
 
     @GetMapping("/usernotifications")
     public List<NotificationModel> obtenerNotificacionesUsuarios(@RequestParam("user") String user_name){
-        List<User_sportsModel> user_sports=user_sportsService.getUser_sports(user_name);
-        List< NotificationModel> notifications = new ArrayList<NotificationModel>();
-        for(int c=0;c<user_sports.size();c++){
-            List< NotificationModel> temp = notificationService.getNotificationBySport(user_sports.get(c).getNAME_SPORT());
-            notifications = Stream.concat(notifications.stream(), temp.stream()).collect(Collectors.toList());
-        }  
+        List< NotificationModel> notifications = notificationService.getNotificationByUser(user_name);
         return notifications;
     }
 
