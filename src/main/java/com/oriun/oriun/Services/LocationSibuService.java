@@ -38,7 +38,7 @@ public class LocationSibuService {
         String nl=newlocationsibu.getNAME_LOCATION();
         if(locationsibuRepository.existsById(nl)){
             boolean op=newlocationsibu.isOPEN();
-            Blob im=newlocationsibu.getIMAGE_LOCATION();
+            byte[] im=newlocationsibu.getIMAGE_LOCATION();
             locationsibuRepository.updatebyID(nl,op,im);
             return new ResponseEntity<>("Actualizado",
                     HttpStatus.OK);
@@ -69,6 +69,23 @@ public class LocationSibuService {
             return new ResponseEntity<>("Ubicacion antigua no existia",
                     HttpStatus.BAD_REQUEST );
         }
+    }
+    public ResponseEntity updateimg(String nl, byte[] img) {
+        if(locationsibuRepository.existsById(nl)){
+            locationsibuRepository.updateimg(nl, img);
+            return new ResponseEntity<>("Imagen subida exitosamente",
+                    HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Ubicacion antigua no encontrada",
+                    HttpStatus.BAD_REQUEST );
+        }
+    }
+    public int  changeopen(String nls){
+        if(locationsibuRepository.existsById(nls)){
+            return locationsibuRepository.changeOpenbyID(nls);
+        }
+        return 0;
     }
 
 }

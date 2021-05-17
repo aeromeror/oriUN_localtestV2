@@ -58,7 +58,7 @@ public class EventService {
     public List<Object[]> getOtherSportsCount(){
         return eventRepository.findByOtherSportscount();
     }
-    public List<EventModel> getEventByOther(String other_sport){
+    public List<Integer> getIdEventByOther(String other_sport){
         return eventRepository.findByOther_Sport(other_sport);
     }
     public ArrayList<EventModel> getEventVigentes(){

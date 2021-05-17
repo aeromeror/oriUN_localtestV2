@@ -11,7 +11,7 @@ public class LocationsibuModel {
     private String NAME_LOCATION;
     private boolean OPEN;
 	@Lob
-    private Blob IMAGE_LOCATION;
+    private byte[] IMAGE_LOCATION;
 
 	public String getNAME_LOCATION() {
 		return this.NAME_LOCATION;
@@ -29,16 +29,16 @@ public class LocationsibuModel {
 		this.OPEN = OPEN;
 	}
 
-	public Blob getIMAGE_LOCATION() {
+	public byte[] getIMAGE_LOCATION() {
 		return this.IMAGE_LOCATION;
 	}
 
-	public void setIMAGE_LOCATION(Blob IMAGE_LOCATION) {
+	public void setIMAGE_LOCATION(byte[] IMAGE_LOCATION) {
 		this.IMAGE_LOCATION = IMAGE_LOCATION;
 	}
 
 
-    public LocationsibuModel(String name_loc_sport, boolean open , Blob image){
+    public LocationsibuModel(String name_loc_sport, boolean open , byte[] image){
             this.NAME_LOCATION=name_loc_sport;
             this.OPEN=open;
             this.IMAGE_LOCATION=image;

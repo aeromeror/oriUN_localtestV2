@@ -32,12 +32,14 @@ public class SportController {
     @PostMapping("/g")
     public SportModel guardardeporte(@RequestBody SportModel sports){
         SportModel s = sportService.saveSport(sports);
-        List<EventModel> others= eventService.getEventByOther(sports.getNAME_SPORT());
-        eventService.updateEventSport(sports.getNAME_SPORT());
-        for(int i=0;i<others.size();i++){
-            EventModel t =others.get(i);
-            notificationService.updateNotificationSport(sports.getNAME_SPORT(), t.getID_EVENT());
-        }
+        String ns=sports.getNAME_SPORT();
+        notificationService.updateNotificationOtherSport(ns);
+        //List<Integer> others= eventService.getIdEventByOther(ns);
+        eventService.updateEventSport(ns);
+        /*for(int i=0;i<others.size();i++){
+            //EventModel t =others.get(i);
+            notificationService.updateNotificationSport(ns, others.get(i));
+        }*/
         return s;
     }
 

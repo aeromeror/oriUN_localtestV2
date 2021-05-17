@@ -41,5 +41,8 @@ public interface NotificationRepository extends JpaRepository<NotificationModel,
    @Query(value= "SELECT oriun_prueba.notifications.* FROM oriun_prueba.notifications inner join oriun_prueba.user_sports ON oriun_prueba.notifications.name_sport = oriun_prueba.user_sports.name_sport where oriun_prueba.user_sports.user_name = ?1"
     , nativeQuery= true)
    List<NotificationModel> findByUsername(String username);
-    
+    @Modifying
+    @Query(value = "UPDATE oriun_prueba.notifications inner join event on notifications.id_event=event.id_event SET notifications.name_sport = ?1  where event.other_sport=?1"
+            , nativeQuery = true)
+    int updateNotificationOtherSport(String new_sport);
 }

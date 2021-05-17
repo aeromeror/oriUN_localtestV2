@@ -20,9 +20,9 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     @Query(value = "SELECT other_sport,COUNT(*) FROM oriun_prueba.event  WHERE other_sport IS NOT NULL GROUP BY other_sport",
        nativeQuery = true)
     List<Object[]>findByOtherSportscount();
-    @Query(value = "SELECT * FROM oriun_prueba.event  WHERE other_sport = ?1 ",
+    @Query(value = "SELECT id_event FROM oriun_prueba.event  WHERE other_sport =?1 ",
        nativeQuery = true)
-    List<EventModel>findByOther_Sport(String other_sport);
+    List<Integer>findByOther_Sport(String other_sport);
     @Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time())",
             nativeQuery = true)
     ArrayList<EventModel>findCurrent();

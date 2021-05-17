@@ -75,7 +75,9 @@ public class NotificationService {
     public void updateNotificationSport(String new_sport,int id_event){
         notificationRepository.updateNotificationSport(new_sport, id_event);
     }
-    
+    public void updateNotificationOtherSport(String new_sport){
+        notificationRepository.updateNotificationOtherSport(new_sport);
+    }
     //TEST PUSH NOTIFICATIONS
     @Autowired
     private WebClient webClient;
