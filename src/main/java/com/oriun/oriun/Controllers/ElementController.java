@@ -1,10 +1,13 @@
 package com.oriun.oriun.Controllers;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.ElementModel;
 import com.oriun.oriun.Services.ElementService;
+import org.springframework.web.multipart.MultipartFile;
+
 @RestController
 //@RequestMapping("/element")
 public class ElementController {
@@ -43,5 +46,10 @@ public class ElementController {
     public int CambiarEstadoElemento(@RequestParam("id") int id){
         //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
         return elementService.changeavalaible(id);
+    }
+    @PutMapping("/uploadimgel")
+    public ResponseEntity upimgel(@RequestParam("file") MultipartFile multipartFile, @RequestParam("ide") int id_im) throws IOException {
+        byte[] im= multipartFile.getBytes();
+        return elementService.updateimg(id_im,im);
     }
 }

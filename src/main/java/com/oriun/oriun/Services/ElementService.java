@@ -64,7 +64,8 @@ public class ElementService {
                     String des= newelement.getDESCRIPTION();
                     boolean av= newelement.isAVAILABLE();
                     String name= newelement.getELEMENT_NAME();
-                    elementRepository.updatebyID(Id_ne,av,des,name,nl,ns);
+                    byte[] im=newelement.getELEMENT_IMAGE();
+                    elementRepository.updatebyID(Id_ne,av,des,name,nl,ns,im);
                     return new ResponseEntity<>("Actualizado",
                             HttpStatus.OK);
                 }
@@ -138,5 +139,16 @@ public class ElementService {
            return elementRepository.changeAvailablebyID(id);
         }
         return 0;
+    }
+    public ResponseEntity updateimg(int id, byte[] img) {
+        if(elementRepository.existsById(id)){
+            elementRepository.updateimg(id,img);
+            return new ResponseEntity<>("Imagen subida exitosamente",
+                    HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Ubicacion antigua no encontrada",
+                    HttpStatus.BAD_REQUEST );
+        }
     }
 }

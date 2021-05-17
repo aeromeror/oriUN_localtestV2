@@ -19,7 +19,7 @@ public class ElementModel {
     @Column(columnDefinition="text")
     private String ELEMENT_NAME;
 	@Lob
-    private Blob ELEMENT_IMAGE;
+    private byte[] ELEMENT_IMAGE;
 
 
 	public int getID_ELEMENT() {
@@ -70,18 +70,18 @@ public class ElementModel {
 		this.ELEMENT_NAME = ELEMENT_NAME;
 	}
 
-	public Blob getELEMENT_IMAGE() {
+	public byte[] getELEMENT_IMAGE() {
 		return this.ELEMENT_IMAGE;
 	}
 
-	public void setELEMENT_IMAGE(Blob ELEMENT_IMAGE) {
+	public void setELEMENT_IMAGE(byte[] ELEMENT_IMAGE) {
 		this.ELEMENT_IMAGE = ELEMENT_IMAGE;
 	}
 
 	public ElementModel(){
 	}
     public ElementModel(int id_element,boolean available,String description,
-    String element_name,String name_location,String name_sport,Blob element_image){
+    String element_name,String name_location,String name_sport,byte[] element_image){
         this.ID_ELEMENT=id_element;
         this.AVAILABLE=available;
         this.DESCRIPTION=description;
