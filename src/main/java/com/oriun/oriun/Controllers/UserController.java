@@ -187,7 +187,25 @@ public class UserController {
 		
 	}
 	
+	@RequestMapping(value="/userstate", method= {RequestMethod.GET})
+    public ResponseEntity Userstate(@RequestParam("user")String username)
+    {
 
+		Optional<UserModel>user=userService.getUser(username);
+        if(user.isPresent())
+        {
+            return new ResponseEntity<>(
+					user.get().isENABLED(), 
+					HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(
+			"error user not found", 
+			HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+    }
 
 
 
