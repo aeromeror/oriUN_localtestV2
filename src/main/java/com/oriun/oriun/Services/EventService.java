@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.EventModel;
 
-import com.oriun.oriun.Models.NotificationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.oriun.oriun.Repositories.EventRepository;
