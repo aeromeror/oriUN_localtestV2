@@ -35,6 +35,7 @@ public class EventService {
     public Optional<EventModel> getEventById(int event_id) {
         return eventRepository.findById(event_id);
     }
+    //Update sin Query
     public EventModel updateEvent(int eventID,EventModel newevent) {
         Optional<EventModel> oldevent = eventRepository.findById(eventID);
         if(oldevent.isPresent()){
