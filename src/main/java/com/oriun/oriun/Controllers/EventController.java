@@ -61,7 +61,7 @@ public class EventController {
 
     @PostMapping("/event")
     public EventModel guardarevento(@RequestBody EventModel event){
-        if(eventService.Objetovalido(event.getNAME_SPORT(),event.getUSER_NAME(),event.getNAME_LOC_SPORT())){
+        if(eventService.Eventovalido(event.getNAME_SPORT(),event.getUSER_NAME(),event.getNAME_LOC_SPORT())){
             if(event.getEVENT_DESCRIPTION()!=null && event.getEVENT_TITLE()!=null  && event.getEVENT_INIT()!=null  && event.getEVENT_END()!=null  && event.getEVENT_INIT_HOUR()!=null && event.getEVENT_FINISH_HOUR()!=null){
                 java.util.Date d1 = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
@@ -84,6 +84,14 @@ public class EventController {
             }
         }
         return null;
+    }
+    @PutMapping("/updevent")
+    public ResponseEntity actualizarevento(@RequestBody EventModel event){
+        if(event.getID_EVENT()!=null && event.getNAME_SPORT()!=null && event.getNAME_LOC_SPORT()!=null && event.getEVENT_DESCRIPTION()!=null && event.getEVENT_TITLE()!=null  && event.getEVENT_INIT()!=null  && event.getEVENT_END()!=null  && event.getEVENT_INIT_HOUR()!=null && event.getEVENT_FINISH_HOUR()!=null){
+            return eventService.updateEvent(event);
+        }
+        return new ResponseEntity<>("Rellene todos los campos obligatorios",
+                HttpStatus.BAD_REQUEST );
     }
 
     /*@GetMapping("/userevents")
