@@ -28,8 +28,8 @@ public class ElementService {
         return (ArrayList<ElementModel>)elementRepository.findAll();
     }
     
-    public ElementModel saveElement(ElementModel element){
-        return elementRepository.save(element);
+    public ElementModel saveElement(ElementModel em){
+        return elementRepository.save(em);
     }
 
 

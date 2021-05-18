@@ -18,8 +18,11 @@ public class ElementController {
         return elementService.getElements();
     }
     @PostMapping("/element")
-    public ElementModel guardarElemento(@RequestBody ElementModel element){
-        return this.elementService.saveElement(element);
+    public ElementModel guardarElemento(@RequestBody ElementModel el){
+        if((el.getDESCRIPTION()!=null)&&(el.getELEMENT_NAME()!=null)&&(el.getNAME_LOCATION()!=null)&&(el.getNAME_SPORT()!=null)){
+            return this.elementService.saveElement(el);
+        }
+        return null;
     }
     @GetMapping("/elntofsibu")
     public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu){

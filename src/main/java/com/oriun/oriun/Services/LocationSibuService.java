@@ -87,5 +87,4 @@ public class LocationSibuService {
         }
         return 0;
     }
-
 }

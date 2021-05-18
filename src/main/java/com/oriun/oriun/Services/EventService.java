@@ -27,6 +27,9 @@ public class EventService {
         return eventRepository.findUserEvents(user_name);
     }
     public EventModel saveEvent(EventModel event){
+        if(event.getOTHER_SPORT()!=null){
+            event.setOTHER_SPORT(FormatText(event.getOTHER_SPORT()));
+        }
         return eventRepository.save(event);
     }
     public Optional<EventModel> getEventById(int event_id) {
@@ -74,5 +77,10 @@ public class EventService {
     public void adiosEvent(int id_event){
         eventRepository.deleteEvent(id_event);
     }
-    
+    private String FormatText(String in){
+        String out=in.toLowerCase();
+        String M=String.valueOf((char)(out.charAt(0)-32));
+        out=out.replaceFirst(String.valueOf(out.charAt(0)),M);
+        return out;
+    }
 }

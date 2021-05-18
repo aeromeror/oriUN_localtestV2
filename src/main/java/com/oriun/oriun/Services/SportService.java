@@ -20,6 +20,7 @@ public class SportService {
         return (ArrayList<SportModel>)sportRepository.findAll();
     }
     public SportModel saveSport(SportModel sport){
+        sport.setNAME_SPORT(FormatText(sport.getNAME_SPORT()));
         return sportRepository.save(sport);
     }
     public SportModel updateSport(String oldsport,String newsport) {
@@ -38,5 +39,11 @@ public class SportService {
     }
     public boolean existSport(String sn){
         return sportRepository.existsById(sn);
+    }
+    private String FormatText(String in){
+        String out=in.toLowerCase();
+        String M=String.valueOf((char)(out.charAt(0)-32));
+        out=out.replaceFirst(String.valueOf(out.charAt(0)),M);
+        return out;
     }
 }
