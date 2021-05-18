@@ -15,6 +15,9 @@ public class LocationSportController {
 
     @PostMapping("/glocationsport")
     public LocationsportModel guardarLocationsibu(@RequestBody LocationsportModel locationsport){
-        return this.locationsportservice.saveLocationsport(locationsport);
+        if(locationsport.getNAME_LOC_SPORT()!=null){
+            return this.locationsportservice.saveLocationsport(locationsport);
+        }
+        return null;
     }
 }

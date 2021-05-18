@@ -61,24 +61,29 @@ public class EventController {
 
     @PostMapping("/event")
     public EventModel guardarevento(@RequestBody EventModel event){
-        java.util.Date d1 = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
-        event.setCREATION_DATE(sqlDate);
-        System.out.println(sqlDate);
-        User_eventModel asistencia= new User_eventModel();
-        EventModel ev= eventService.saveEvent(event);
-        asistencia.setID_EVENT(event.getID_EVENT());
-        asistencia.setUSER_NAME(event.getUSER_NAME());
-        user_eventService.saveUser_event(asistencia);
-        NotificationModel notification = new NotificationModel();
-        notification.setNAME_SPORT(ev.getNAME_SPORT());
-        notification.setID_EVENT(ev.getID_EVENT());
-        notification.setNOTIFICATION_DATE(ev.getEVENT_INIT());
-        notification.setTIME_NOTIFICATION(ev.getEVENT_INIT_HOUR());
-        notification.setEXPIRATION_TIME(ev.getEVENT_FINISH_HOUR());
-        notification.setNOTIFICATION_DESCRIPTION("A brand new event is coming : "+ev.getEVENT_TITLE());
-        notificationService.saveNotification(notification);
-        return ev;
+        if(eventService.Objetovalido(event.getNAME_SPORT(),event.getUSER_NAME(),event.getNAME_LOC_SPORT())){
+            if(event.getEVENT_DESCRIPTION()!=null && event.getEVENT_TITLE()!=null  && event.getEVENT_INIT()!=null  && event.getEVENT_END()!=null  && event.getEVENT_INIT_HOUR()!=null && event.getEVENT_FINISH_HOUR()!=null){
+                java.util.Date d1 = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
+                event.setCREATION_DATE(sqlDate);
+                System.out.println(sqlDate);
+                User_eventModel asistencia= new User_eventModel();
+                EventModel ev= eventService.saveEvent(event);
+                asistencia.setID_EVENT(event.getID_EVENT());
+                asistencia.setUSER_NAME(event.getUSER_NAME());
+                user_eventService.saveUser_event(asistencia);
+                NotificationModel notification = new NotificationModel();
+                notification.setNAME_SPORT(ev.getNAME_SPORT());
+                notification.setID_EVENT(ev.getID_EVENT());
+                notification.setNOTIFICATION_DATE(ev.getEVENT_INIT());
+                notification.setTIME_NOTIFICATION(ev.getEVENT_INIT_HOUR());
+                notification.setEXPIRATION_TIME(ev.getEVENT_FINISH_HOUR());
+                notification.setNOTIFICATION_DESCRIPTION("A brand new event is coming : "+ev.getEVENT_TITLE());
+                notificationService.saveNotification(notification);
+                return ev;
+            }
+        }
+        return null;
     }
 
     /*@GetMapping("/userevents")
@@ -132,6 +137,7 @@ public class EventController {
             return null;
         }
     }
+    //cambiar  a return hhtpstatus
     @PostMapping("/asistirevent")
     public boolean asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
         if(eventService.existEvent(id_eve) && userService.existUser(username)){

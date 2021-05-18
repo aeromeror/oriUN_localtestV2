@@ -10,6 +10,9 @@ import com.oriun.oriun.Models.EventModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.oriun.oriun.Repositories.EventRepository;
+import com.oriun.oriun.Repositories.LocationsportRepository;
+import com.oriun.oriun.Repositories.SportRepository;
+import com.oriun.oriun.Repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -19,6 +22,12 @@ public class EventService {
     @Autowired
     
     EventRepository eventRepository;
+    @Autowired
+    LocationsportRepository locationsportRepository;
+    @Autowired
+    SportRepository sportRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public ArrayList<EventModel> getEvents(){
         return (ArrayList<EventModel>)eventRepository.findAll();
@@ -83,5 +92,13 @@ public class EventService {
         String M=String.valueOf((char)(out.charAt(0)-32));
         out=out.replaceFirst(String.valueOf(out.charAt(0)),M);
         return out;
+    }
+    public Boolean Objetovalido(String dep, String nu, String ld){
+        if(dep!=null && nu!=null  && ld!=null){
+            if( sportRepository.existsById(dep)&& userRepository.existsById(nu)&& locationsportRepository.existsById(ld)){
+                return true;
+            }
+        }
+        return false;
     }
 }

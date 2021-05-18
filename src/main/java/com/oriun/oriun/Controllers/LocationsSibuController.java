@@ -25,7 +25,10 @@ public class LocationsSibuController {
 
     @PostMapping("/glocationsibu")
     public LocationsibuModel guardarLocationsibu(@RequestBody LocationsibuModel locationsibu){
-        return this.locationSibuService.savelocationsibu(locationsibu);
+        if(locationsibu.getNAME_LOCATION()!=null){
+            return this.locationSibuService.savelocationsibu(locationsibu);
+        }
+        return null;
     }
     @PutMapping("/updlocation")
     public ResponseEntity actualizarLocationsibu(@RequestBody LocationsibuModel ls){
