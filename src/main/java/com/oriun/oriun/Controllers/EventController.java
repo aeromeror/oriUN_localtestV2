@@ -69,8 +69,8 @@ public class EventController {
                 System.out.println(sqlDate);
                 User_eventModel asistencia= new User_eventModel();
                 EventModel ev= eventService.saveEvent(event);
-                asistencia.setID_EVENT(event.getID_EVENT());
-                asistencia.setUSER_NAME(event.getUSER_NAME());
+                asistencia.setID_EVENT(ev.getID_EVENT());
+                asistencia.setUSER_NAME(ev.getUSER_NAME());
                 user_eventService.saveUser_event(asistencia);
                 NotificationModel notification = new NotificationModel();
                 notification.setNAME_SPORT(ev.getNAME_SPORT());
@@ -185,7 +185,7 @@ public class EventController {
         return new ResponseEntity<>("Evento o Usuario inexistentes",
                 HttpStatus.NOT_FOUND );
     }
-
+    //Revisar estabilidad de borrado en cascada
     @DeleteMapping("/NoEvent")
     public void borrarEvento(@RequestParam("id_event") int id_event){
         eventService.adiosEvent(id_event);

@@ -41,6 +41,10 @@ public class EventService {
         return eventRepository.findUserEvents(user_name);
     }
     public EventModel saveEvent(EventModel event){
+        Date sqlDate = new Date(event.getEVENT_INIT().getTime()+(60000*60*24));
+        event.setEVENT_INIT(sqlDate);
+        sqlDate = new Date(event.getEVENT_END().getTime()+(60000*60*24));
+        event.setEVENT_END(sqlDate);
         if(event.getOTHER_SPORT()!=null){
             event.setOTHER_SPORT(FormatText(event.getOTHER_SPORT()));
         }
@@ -71,8 +75,8 @@ public class EventService {
                     }
                     else {*/
                         String des =newevent.getEVENT_DESCRIPTION();
-                        Date dei=newevent.getEVENT_INIT();
-                        Date dee=newevent.getEVENT_END();
+                        Date dei=new Date(newevent.getEVENT_INIT().getTime()+(60000*60*24));
+                        Date dee=new Date(newevent.getEVENT_END().getTime()+(60000*60*24));
                         double cap=newevent.getCAPACITY();
                         String os=newevent.getOTHER_SPORT();
                         Time tei=newevent.getEVENT_INIT_HOUR();
@@ -99,6 +103,7 @@ public class EventService {
                     HttpStatus.BAD_REQUEST );
         }
     }
+    //Revisar estabilidad de borrado en cascada
     public EventModel deleteEvent(EventModel event){
         eventRepository.delete(event);
         return event;
