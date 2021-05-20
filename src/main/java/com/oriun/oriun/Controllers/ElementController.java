@@ -17,6 +17,10 @@ public class ElementController {
     public ArrayList<ElementModel> obtenerElementos(){
         return elementService.getElements();
     }
+    @GetMapping("/MyElement")
+    public ElementModel miElemento(@RequestParam("id") int id){
+        return elementService.getElementById(id);
+    }
     @PostMapping("/element")
     public ElementModel guardarElemento(@RequestBody ElementModel el){
         if((el.getDESCRIPTION()!=null)&&(el.getELEMENT_NAME()!=null)&&(el.getNAME_LOCATION()!=null)&&(el.getNAME_SPORT()!=null)){

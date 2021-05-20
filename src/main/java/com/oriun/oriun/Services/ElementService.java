@@ -33,8 +33,10 @@ public class ElementService {
     }
 
 
-    public Optional<ElementModel> getElementById(int element_id) {
-        return elementRepository.findById(element_id);
+    public ElementModel getElementById(int element_id) {
+        Optional<ElementModel> temp=elementRepository.findById(element_id);
+        if(temp.isPresent())return temp.get();
+        return null;
     }
 
     public ResponseEntity updateElement(ElementModel newelement) {
