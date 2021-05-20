@@ -41,9 +41,16 @@ public class ElementController {
         return elementService.deleteElement(id);
     }
     @PutMapping("/elementupd")
-    public ResponseEntity actualizarElemento(@RequestBody ElementModel element){
+    public ResponseEntity actualizarElemento(@RequestBody ElementModel element)//,@RequestParam("id") int id,@RequestParam("available") boolean av,@RequestParam("description") String des,@RequestParam("namel") String nl,@RequestParam("names") String ns,@RequestParam("imagee") byte[] image
+    {
         //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
+        //ElementModel el=new ElementModel(id,av,des,"dgosdfg",nl,ns,image);
         return elementService.updateElement(element);
+    }
+    @PutMapping("/a")
+    public ResponseEntity ae(@RequestBody ElementModel element){
+        //ElementModel t=new ElementModel(element.getID_ELEMENT(),element.isAVAILABLE(),element.getDESCRIPTION(), element.getELEMENT_NAME(), element.getNAME_LOCATION(), element.getNAME_SPORT());
+        return elementService.uE(element);
     }
     @PutMapping("/elementcs")
     public int CambiarEstadoElemento(@RequestParam("id") int id){

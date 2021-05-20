@@ -20,7 +20,10 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
             nativeQuery = true)
     int updatebyID(int id_element,boolean available,String description,
                    String element_name,String name_location,String name_sport,byte[] im);
-
+    @Modifying
+    @Query(value = "UPDATE oriun_prueba.element SET AVAILABLE =?2,DESCRIPTION=?3,NAME_LOCATION=?4,NAME_SPORT=?5,ElEMENT_IMAGE=?6 WHERE ID_ELEMENT= ?1",
+            nativeQuery = true)
+    int updatebyIDnoname(int id_element,boolean available,String description,String name_location,String name_sport,byte[] im);
     @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_LOCATION=?1",
             nativeQuery = true)
     ArrayList<ElementModel> findbyLocation(String name_location);

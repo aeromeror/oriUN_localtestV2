@@ -76,7 +76,45 @@ public class ElementService {
                     HttpStatus.BAD_REQUEST );
         }
     }
-
+    public ResponseEntity uE(ElementModel newelement) {
+        int Id_ne=newelement.getID_ELEMENT();
+        if(elementRepository.existsById(Id_ne)){
+        /*if(elementRepository.existsById(elementID)){
+            Optional<ElementModel> oldelement = elementRepository.findById(elementID);
+            if(oldelement.isPresent()){
+                elementRepository.delete(oldelement.get());
+                ElementModel updatedElement = elementRepository.save(newelement);
+                return updatedElement;
+            }else{
+                return oldelement.get();
+            }*/
+            String nl=newelement.getNAME_LOCATION();
+            if(!locationsibuRepository.existsById(nl)){
+                return new ResponseEntity<>("Ubicacion no encontrada",
+                        HttpStatus.NOT_FOUND );
+            }
+            else{
+                String ns= newelement.getNAME_SPORT();
+                if(!sportRepository.existsById(ns)){
+                    return new ResponseEntity<>("Deporte no encontrado",
+                            HttpStatus.NOT_FOUND );
+                }
+                else{
+                    String des= newelement.getDESCRIPTION();
+                    boolean av= newelement.isAVAILABLE();
+                    //String name= newelement.getELEMENT_NAME();
+                    byte[] im=newelement.getELEMENT_IMAGE();
+                    elementRepository.updatebyIDnoname(Id_ne,av,des,nl,ns,im);
+                    return new ResponseEntity<>("Actualizado",
+                            HttpStatus.OK);
+                }
+            }
+        }
+        else{
+            return new ResponseEntity<>("Elemento antiguo no encontrado",
+                    HttpStatus.BAD_REQUEST );
+        }
+    }
     /*public ResponseEntity<?> deleteElement(int elementID) {
         ElementModel element  = elementRepository.findById(elementID);
         elementRepository.delete(element);
