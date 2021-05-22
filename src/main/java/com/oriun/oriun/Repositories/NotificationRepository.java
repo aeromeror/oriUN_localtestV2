@@ -15,7 +15,7 @@ import java.sql.Date;
 import java.util.List;
 @Repository
 public interface NotificationRepository extends JpaRepository<NotificationModel,Integer> {
-    @Query(value = "SELECT * FROM oriun_prueba.notifications  WHERE NAME_SPORT = ?1 ",
+    @Query(value = "SELECT * FROM oriun_prueba.notifications  WHERE NOTIFICATION_DATE >= NOW() AND NAME_SPORT = ?1 ",
        nativeQuery = true)
     List<NotificationModel>findByNAME_SPORT(String sport);
 
