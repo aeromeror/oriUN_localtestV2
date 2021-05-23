@@ -25,9 +25,9 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     @Query(value = "SELECT id_event FROM oriun_prueba.event  WHERE other_sport =?1 ",
        nativeQuery = true)
     List<Integer>findByOther_Sport(String other_sport);
-    @Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time())",
+    @Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time()) LIMIT ?1,?2",
             nativeQuery = true)
-    ArrayList<EventModel>findCurrent();
+    ArrayList<EventModel>findCurrent(int init,int size);
     @Modifying
     @Query(value = "UPDATE oriun_prueba.event SET name_sport = ?1, other_sport= NULL WHERE other_sport = ?1"
     , nativeQuery = true)

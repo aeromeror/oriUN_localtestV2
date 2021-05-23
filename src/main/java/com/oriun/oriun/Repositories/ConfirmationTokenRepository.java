@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationTokenModel,Integer>{
-    @Query(value = "SELECT * FROM oriun_prueba.confirmation_token  WHERE confirmation_token = ?1 ",
+    @Query(value = "SELECT * FROM oriun_prueba.confirmation_token  WHERE confirmation_token = ?1 LIMIT 1",
     nativeQuery = true)
     ConfirmationTokenModel findByConfirmationToken(String confirmationToken);
 }

@@ -123,8 +123,10 @@ public class EventService {
     public List<Integer> getIdEventByOther(String other_sport){
         return eventRepository.findByOther_Sport(other_sport);
     }
-    public ArrayList<EventModel> getEventVigentes(){
-        return eventRepository.findCurrent();
+    public ArrayList<EventModel> getEventVigentes(int init,int size){
+        if(size<1)size=10;
+        if(init<1)init=0;
+        return eventRepository.findCurrent(init,size);
     }
     public void updateEventSport(String sport_name){
         eventRepository.updateEventSport(sport_name);

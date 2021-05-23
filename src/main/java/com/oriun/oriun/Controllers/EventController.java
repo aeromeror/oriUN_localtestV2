@@ -36,7 +36,7 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public ArrayList<EventModel> obtenerEventosVigentes(){
+    public ArrayList<EventModel> obtenerEventosVigentes(@RequestParam("init") int init,@RequestParam("size")int size){
         /*java.util.Date d1 = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
         ArrayList<EventModel> ev=eventService.getEvents();
@@ -56,7 +56,7 @@ public class EventController {
             }
         }
         return ev;*/
-        return eventService.getEventVigentes();
+        return eventService.getEventVigentes(init, size);
     }
 
     @PostMapping("/event")
