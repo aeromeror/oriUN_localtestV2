@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UserModel,String>{
   //@Query("select u from user u where u.USER_NAME = ?1")
   //UserModel findByUsername(String username);
-  @Query(value = "SELECT * FROM oriun_prueba.user  WHERE EMAIL = ?1 ",
+  @Query(value = "SELECT * FROM oriun_prueba.user  WHERE EMAIL = ?1 LIMIT 1 ",
     nativeQuery = true)
     UserModel findByEMAIL(String email);
 
@@ -19,4 +19,8 @@ public interface UserRepository extends JpaRepository<UserModel,String>{
   @Query(value = "UPDATE oriun_prueba.user SET ENABLED = 1 WHERE USER_NAME= ?1",
           nativeQuery = true)
   void updateUserState(String user_name);
+  @Modifying
+  @Query(value = "UPDATE oriun_prueba.user SET ENABLED = 0 WHERE USER_NAME= ?1",
+          nativeQuery = true)
+  int disableUserState(String user_name);
 }

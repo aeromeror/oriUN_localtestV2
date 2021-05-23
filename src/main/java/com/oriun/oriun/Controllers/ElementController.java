@@ -14,8 +14,12 @@ public class ElementController {
     @Autowired
     ElementService elementService;
     @GetMapping("/elements")
-    public ArrayList<ElementModel> obtenerElementos(){
-        return elementService.getElements();
+    public ArrayList<ElementModel> obtenerElementos(@RequestParam("init") int init,@RequestParam("size")int size){
+        if(init<1)init=0;
+        if(size<1){
+            return elementService.getElements();
+        }
+        return elementService.SubgetElements(init,size);
     }
     @GetMapping("/MyElement")
     public ElementModel miElemento(@RequestParam("id") int id){
@@ -29,16 +33,16 @@ public class ElementController {
         return null;
     }
     @GetMapping("/elntofsibu")
-    public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu){
-        return elementService.getElementsLsibu(name_lsibu);
+    public ArrayList<ElementModel> obtenerElementossibu(@RequestParam("name_location") String name_lsibu,@RequestParam("init") int init,@RequestParam("size")int size){
+        return elementService.getElementsLsibu(name_lsibu,init,size);
     }
     @GetMapping("/elntofsport")
-    public ArrayList<ElementModel> obtenerElementosSport(@RequestParam("name_sport") String name_sport){
-        return elementService.getElementsSport(name_sport);
+    public ArrayList<ElementModel> obtenerElementosSport(@RequestParam("name_sport") String name_sport,@RequestParam("init") int init,@RequestParam("size")int size){
+        return elementService.getElementsSport(name_sport,init,size);
     }
     @GetMapping("/elntav")
-    public ArrayList<ElementModel> obtenerElementosAvailable(){
-        return elementService.getElementsAvailable();
+    public ArrayList<ElementModel> obtenerElementosAvailable(@RequestParam("init") int init,@RequestParam("size")int size){
+        return elementService.getElementsAvailable(init,size);
     }
     @DeleteMapping("/noelements")
     public ResponseEntity borrarElemento(@RequestParam("id") int id){

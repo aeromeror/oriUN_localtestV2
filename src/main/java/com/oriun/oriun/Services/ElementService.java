@@ -27,7 +27,9 @@ public class ElementService {
     public ArrayList<ElementModel> getElements(){
         return (ArrayList<ElementModel>)elementRepository.findAll();
     }
-    
+    public ArrayList<ElementModel> SubgetElements(int init,int size){
+        return elementRepository.findSubList(init,size);
+    }
     public ElementModel saveElement(ElementModel em){
         return elementRepository.save(em);
     }
@@ -122,7 +124,7 @@ public class ElementService {
         elementRepository.delete(element);
         return ResponseEntity.ok().build();
     }*/
-    public ArrayList<ElementModel> getElementsLsibu(String name_lsibu){
+    public ArrayList<ElementModel> getElementsLsibu(String name_lsibu,int init,int size){
         /*ArrayList<ElementModel> AL1=(ArrayList<ElementModel>)elementRepository.findAll();
         Iterator<ElementModel> AL1_iterator=AL1.iterator();
         while(AL1_iterator.hasNext()){
@@ -131,13 +133,19 @@ public class ElementService {
                 AL1_iterator.remove();
             }
         }*/
-        return elementRepository.findbyLocation(name_lsibu);
+        if(size<1)size=1000;
+        if(init<1)init=0;
+        return elementRepository.findbyLocation(name_lsibu,init,size);
     }
-    public ArrayList<ElementModel> getElementsSport(String name_sport){
-        return elementRepository.findbySport(name_sport);
+    public ArrayList<ElementModel> getElementsSport(String name_sport,int init,int size){
+        if(size<1)size=1000;
+        if(init<1)init=0;
+        return elementRepository.findbySport(name_sport,init,size);
     }
-    public ArrayList<ElementModel> getElementsAvailable(){
-        return elementRepository.findAvailables();
+    public ArrayList<ElementModel> getElementsAvailable(int init,int size){
+        if(size<1)size=1000;
+        if(init<1)init=0;
+        return elementRepository.findAvailables(init,size);
     }
     public ElementModel saveElementLsibu(ElementModel element,String name_lsibu){
         if (element.getNAME_LOCATION().equals(name_lsibu)){

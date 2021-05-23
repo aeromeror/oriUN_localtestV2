@@ -45,4 +45,10 @@ public class UserService {
     public Boolean existUser(String userid){
         return userRepository.existsById(userid);
     }
+    public boolean disUser(String userid){
+        if(userid!=null && userRepository.existsById(userid)){
+            return (userRepository.disableUserState(userid)>0);
+        }
+        return false;
+    }
 }

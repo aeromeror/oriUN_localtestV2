@@ -207,6 +207,18 @@ public class UserController {
 
     }
 
+    @PutMapping("/banuser")
+	public ResponseEntity  Stopuser(@RequestParam("user")String username){
+		if(userService.disUser(username)){
+			return new ResponseEntity<>("Usuario desactivado",
+					HttpStatus.OK );
+		}
+		else{
+			return new ResponseEntity<>("Usuario no encontrado",
+					HttpStatus.NOT_FOUND );
+		}
+	}
+
 
 
 

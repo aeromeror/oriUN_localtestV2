@@ -11,6 +11,9 @@ import java.util.List;
 
 
 public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
+    @Query(value = "SELECT * FROM oriun_prueba.element LIMIT ?1,?2",
+            nativeQuery = true)
+    ArrayList<ElementModel> findSubList(int init,int size);
     @Modifying
     @Query(value = "UPDATE oriun_prueba.element SET AVAILABLE =NOT AVAILABLE WHERE ID_ELEMENT= ?1",
             nativeQuery = true)
@@ -24,15 +27,15 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Query(value = "UPDATE oriun_prueba.element SET AVAILABLE =?2,DESCRIPTION=?3,NAME_LOCATION=?4,NAME_SPORT=?5,ElEMENT_IMAGE=?6 WHERE ID_ELEMENT= ?1",
             nativeQuery = true)
     int updatebyIDnoname(int id_element,boolean available,String description,String name_location,String name_sport,byte[] im);
-    @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_LOCATION=?1",
+    @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_LOCATION=?1 LIMIT ?2,?3",
             nativeQuery = true)
-    ArrayList<ElementModel> findbyLocation(String name_location);
-    @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_SPORT=?1",
+    ArrayList<ElementModel> findbyLocation(String name_location,int init,int size);
+    @Query(value = "SELECT * FROM oriun_prueba.element WHERE NAME_SPORT=?1 LIMIT ?2,?3",
             nativeQuery = true)
-    ArrayList<ElementModel> findbySport(String name_sport);
-    @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE",
+    ArrayList<ElementModel> findbySport(String name_sport,int init,int size);
+    @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE LIMIT ?1,?2",
             nativeQuery = true)
-    ArrayList<ElementModel> findAvailables();
+    ArrayList<ElementModel> findAvailables(int init,int size);
 
     @Modifying
     @Query(value = "DELETE from oriun_prueba.element WHERE NAME_LOCATION=?1",
