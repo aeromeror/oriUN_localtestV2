@@ -58,7 +58,10 @@ public class EventController {
         return ev;*/
         return eventService.getEventVigentes(init, size);
     }
-
+    @GetMapping("/nevents")
+    public long nEventos(){
+        return eventService.Nevents();
+    }
     @PostMapping("/event")
     public EventModel guardarevento(@RequestBody EventModel event){
         if(eventService.Eventovalido(event.getNAME_SPORT(),event.getUSER_NAME(),event.getNAME_LOC_SPORT())){

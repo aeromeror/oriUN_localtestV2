@@ -2,6 +2,10 @@ package com.oriun.oriun.Services;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.ElementModel;
@@ -10,6 +14,7 @@ import com.oriun.oriun.Repositories.SportRepository;
 import com.oriun.oriun.Repositories.LocationsibuRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -199,4 +204,10 @@ public class ElementService {
                     HttpStatus.BAD_REQUEST );
         }
     }
+    public long Nelements(){
+        return elementRepository.count();
+    }
+    /*public ArrayList<Pair<Integer,String>> SingleList(){
+        return elementRepository.ListElements();
+    }*/
 }

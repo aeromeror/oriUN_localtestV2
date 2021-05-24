@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -36,7 +37,9 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE LIMIT ?1,?2",
             nativeQuery = true)
     ArrayList<ElementModel> findAvailables(int init,int size);
-
+    /*@Query(value = "SELECT id_element,element_name from oriun_prueba.element",
+            nativeQuery = true)
+    ArrayList<Pair<Integer,String>> ListElements();*/
     @Modifying
     @Query(value = "DELETE from oriun_prueba.element WHERE NAME_LOCATION=?1",
             nativeQuery = true)

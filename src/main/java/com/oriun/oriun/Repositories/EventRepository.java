@@ -37,7 +37,7 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
             , nativeQuery = true)//user_name=?12,
     void updatebyID(int id_event, String name_loc_sport, String nsport, String edescription, Date event_i, Date event_e, double cap, String Oth_sport, Time eih,Time efh,String event_title);//, String user_name
     @Query(value = "SELECT oriun_prueba.event.* FROM oriun_prueba.user_event inner join oriun_prueba.event ON oriun_prueba.event.id_event = oriun_prueba.user_event.id_event where oriun_prueba.user_event.user_name=?1 and (event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time()))",
-       nativeQuery = true)
+            nativeQuery = true)
     List<EventModel>findUserEvents(String user_name);
     @Modifying
     @Query(value = "DELETE FROM oriun_prueba.event WHERE (id_event = ?1)"

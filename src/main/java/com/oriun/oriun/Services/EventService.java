@@ -128,6 +128,9 @@ public class EventService {
         if(init<1)init=0;
         return eventRepository.findCurrent(init,size);
     }
+    public long Nevents(){
+        return eventRepository.count();
+    }
     public void updateEventSport(String sport_name){
         eventRepository.updateEventSport(sport_name);
     }

@@ -2,6 +2,7 @@ package com.oriun.oriun.Controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.ElementModel;
@@ -21,6 +22,14 @@ public class ElementController {
         }
         return elementService.SubgetElements(init,size);
     }
+    @GetMapping("/nelements")
+    public long nElementos(){
+        return elementService.Nelements();
+    }
+    /*@GetMapping("/Singlelmts")
+    public ArrayList<Pair<Integer,String>> singleElementos(){
+        return elementService.SingleList();
+    }*/
     @GetMapping("/MyElement")
     public ElementModel miElemento(@RequestParam("id") int id){
         return elementService.getElementById(id);
