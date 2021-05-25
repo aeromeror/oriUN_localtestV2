@@ -43,6 +43,10 @@ public class EventModel {
 
     public EventModel() {
     }
+    
+    public EventModel(Integer ID_EVENT) {
+        this.ID_EVENT = ID_EVENT;
+    }
 
     public Date getCREATION_DATE() {
         return CREATION_DATE;
