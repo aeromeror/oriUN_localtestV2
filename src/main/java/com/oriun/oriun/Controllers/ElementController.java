@@ -1,6 +1,8 @@
 package com.oriun.oriun.Controllers;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.oriun.oriun.Models.ElementoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +28,10 @@ public class ElementController {
     public long nElementos(){
         return elementService.Nelements();
     }
-    /*@GetMapping("/Singlelmts")
-    public ArrayList<Pair<Integer,String>> singleElementos(){
+    @GetMapping("/Singlelmts")
+    public ArrayList<Object> singleElementos(){
         return elementService.SingleList();
-    }*/
+    }
     @GetMapping("/MyElement")
     public ElementModel miElemento(@RequestParam("id") int id){
         return elementService.getElementById(id);

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.transaction.Transactional;
 
 import com.oriun.oriun.Models.ElementModel;
+import com.oriun.oriun.Models.ElementoDTO;
 import com.oriun.oriun.Repositories.ElementRepository;
 import com.oriun.oriun.Repositories.SportRepository;
 import com.oriun.oriun.Repositories.LocationsibuRepository;
@@ -207,7 +208,7 @@ public class ElementService {
     public long Nelements(){
         return elementRepository.count();
     }
-    /*public ArrayList<Pair<Integer,String>> SingleList(){
+    public ArrayList<Object> SingleList(){
         return elementRepository.ListElements();
-    }*/
+    }
 }
