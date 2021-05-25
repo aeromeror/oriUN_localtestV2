@@ -2,6 +2,7 @@ package com.oriun.oriun.Websocket;
 
 import java.util.List;
 
+import com.oriun.oriun.Models.EventModel;
 import com.oriun.oriun.Models.NotificationModel;
 import com.oriun.oriun.Models.SportModel;
 import com.oriun.oriun.Services.NotificationService;
@@ -18,9 +19,9 @@ public class NotPushController {
   
   @MessageMapping("/eventCreated")
     @SendTo("/topic/notifications")
-    public List<NotificationModel> notify(SportModel NAME_SPORT) throws Exception {
-        List< NotificationModel> notifications = notificationService.getNotificationBySport(NAME_SPORT.getNAME_SPORT());
-        System.out.println(NAME_SPORT);
+    public List<NotificationModel> notify(EventModel EVENT) throws Exception {
+        List< NotificationModel> notifications = notificationService.getNotificationByEvent(EVENT.getID_EVENT());
+        System.out.println(EVENT);
         return notifications;
 
     }
