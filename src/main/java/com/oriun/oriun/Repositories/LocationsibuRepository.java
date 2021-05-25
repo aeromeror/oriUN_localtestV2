@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 //@Repository
 public interface LocationsibuRepository extends JpaRepository<LocationsibuModel,String>{
+    @Query(value = "SELECT name_location FROM oriun_prueba.locationsibu",
+            nativeQuery = true)
+    ArrayList<String> ListLsibu();
     @Modifying
     @Query(value = "UPDATE oriun_prueba.locationsibu SET OPEN=?2, IMAGE_LOCATION=?3 WHERE NAME_LOCATION= ?1",
             nativeQuery = true)

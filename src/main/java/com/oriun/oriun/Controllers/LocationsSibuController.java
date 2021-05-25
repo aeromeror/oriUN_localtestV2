@@ -22,7 +22,10 @@ public class LocationsSibuController {
     public ArrayList<LocationsibuModel> obtenerLocationsibu(){
         return locationSibuService.getlocationsibu();
     }
-
+    @GetMapping("/Singlelsibu")
+    public ArrayList<String> singleElementos(){
+        return locationSibuService.SingleList();
+    }
     @PostMapping("/glocationsibu")
     public LocationsibuModel guardarLocationsibu(@RequestBody LocationsibuModel locationsibu){
         if(locationsibu.getNAME_LOCATION()!=null){

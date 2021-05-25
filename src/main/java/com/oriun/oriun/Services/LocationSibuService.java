@@ -87,4 +87,7 @@ public class LocationSibuService {
         }
         return 0;
     }
+    public ArrayList<String> SingleList(){
+        return locationsibuRepository.ListLsibu();
+    }
 }
