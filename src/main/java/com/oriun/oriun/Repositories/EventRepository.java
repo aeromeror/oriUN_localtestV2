@@ -44,6 +44,13 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     , nativeQuery = true)
     void deleteEvent(int id_event);
     
+    @Query(value = "SELECT id_event,event_init,event_init_hour,event_end,event_finish_hour,name_loc_sport FROM oriun_prueba.event  WHERE event_init= ?1",
+            nativeQuery = true)
+    List<Object>findDateEvents(Date date);
+
+    @Query(value = "SELECT id_event,event_init,event_init_hour,event_end,event_finish_hour,name_loc_sport FROM oriun_prueba.event  WHERE event_init>= ?1 AND event_init<= ?2 ORDER BY event_init,event_init_hour",
+            nativeQuery = true)
+    List<Object>findWeekEvents(Date date,Date enddate);
     /*@Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_title= "+event_t,
             nativeQuery = true)
     List<String>findByEvent_title(String event_t);*/

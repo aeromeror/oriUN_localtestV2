@@ -40,6 +40,12 @@ public class EventService {
     public List<EventModel> getUserEvents(String user_name){
         return eventRepository.findUserEvents(user_name);
     }
+    public List<Object> getDateEvents(Date date){
+        return eventRepository.findDateEvents(date);
+    }
+    public List<Object> getWeekEvents(Date date,Date enddate){
+        return eventRepository.findWeekEvents(date,enddate);
+    }
     public EventModel saveEvent(EventModel event){
         Date sqlDate = new Date(event.getEVENT_INIT().getTime()+(86400000));//60000*60*24
         event.setEVENT_INIT(sqlDate);

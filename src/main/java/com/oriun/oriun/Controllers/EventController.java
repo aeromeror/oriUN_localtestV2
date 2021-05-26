@@ -1,5 +1,7 @@
 package com.oriun.oriun.Controllers;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,6 +110,23 @@ public class EventController {
         }
         return userevents;
     }*/
+
+    @GetMapping("/dateevents")
+    public List<Object> obtenerEventosFecha(@RequestParam("date") Date date){
+        List< Object> userevents = eventService.getDateEvents(date);
+        return userevents;
+    }
+
+    @GetMapping("/weekevents")
+    public List<Object> obtenerEventosSemana(@RequestParam("date") Date date){
+        int days = 4;
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, days);
+        java.sql.Date weekDate = new Date(c.getTimeInMillis());
+        List< Object> userevents = eventService.getWeekEvents(date,weekDate);
+        return userevents;
+    }
 
     @GetMapping("/userevents")
     public List<EventModel> obtenerEventosUsuario(@RequestParam("user") String user_name){
