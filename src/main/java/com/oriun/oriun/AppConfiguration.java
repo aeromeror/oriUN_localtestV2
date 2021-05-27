@@ -22,6 +22,8 @@ public class AppConfiguration {
         return Sinks.many().replay().latest();
     }
 
+    //NOƎԀꟽ∀Ͻ ⅂Ǝ 𝘓Ʌ⅄
+
     @Bean
     public Flux<NotificationModel> flux(Sinks.Many<NotificationModel> sink){
         return sink.asFlux();
