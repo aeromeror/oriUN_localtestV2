@@ -149,8 +149,8 @@ public class EventController {
     public List<String> obtenerOtherSports(){
         return eventService.getOtherSports();
     }
-    //falta borrar las notificaciones que crea el evento
-    @DeleteMapping("/event")
+    //Borrar llamado ya existe con una mejor implementacion↓
+    /*@DeleteMapping("/event")
     public EventModel borrarevento(@RequestParam("event") int event_id){
         ArrayList<User_eventModel> usev=user_eventService.getallUser_events();
         for(int c=0;c<usev.size();c++){
@@ -166,10 +166,9 @@ public class EventController {
         }else{
             return null;
         }
-    }
-    //cambiar  a return hhtpstatus
+    }*/
     @PostMapping("/asistirevent")
-    public boolean asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
+    public ResponseEntity asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
         if(eventService.existEvent(id_eve) && userService.existUser(username)){
             User_eventModel asistencia= new User_eventModel();
             Optional<EventModel> oem=eventService.getEventById(id_eve);
@@ -179,10 +178,14 @@ public class EventController {
                 asistencia.setID_EVENT(id_eve);
                 asistencia.setUSER_NAME(username);
                 user_eventService.saveUser_event(asistencia);
-                return  true;
+                return new ResponseEntity<>(username+" ahora asiste a "+oem.get().getEVENT_TITLE(),
+                        HttpStatus.OK );
             }
+            return new ResponseEntity<>("Limite de asistencia",
+                    HttpStatus.INSUFFICIENT_STORAGE );
         }
-        return false;
+        return new ResponseEntity<>("Usuario o evento no existentes",
+                HttpStatus.BAD_REQUEST );
     }
     @DeleteMapping("/LeaveEvent")
     public ResponseEntity abandonarevento(@RequestParam("id_user") String username, @RequestParam("id_event") int id_eve){
@@ -207,7 +210,6 @@ public class EventController {
         return new ResponseEntity<>("Evento o Usuario inexistentes",
                 HttpStatus.NOT_FOUND );
     }
-    //Revisar estabilidad de borrado en cascada
     @DeleteMapping("/NoEvent")
     public void borrarEvento(@RequestParam("id_event") int id_event){
         eventService.adiosEvent(id_event);
