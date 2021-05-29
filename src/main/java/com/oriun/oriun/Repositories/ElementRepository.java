@@ -1,15 +1,11 @@
 package com.oriun.oriun.Repositories;
 import com.oriun.oriun.Models.ElementModel;
-import com.oriun.oriun.Models.ElementoDTO;
+import com.oriun.oriun.Models.ElementBasic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.util.Pair;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
@@ -38,9 +34,9 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE LIMIT ?1,?2",
             nativeQuery = true)
     ArrayList<ElementModel> findAvailables(int init,int size);
-    @Query(value = "SELECT id_element,element_name, name_location from oriun_prueba.element",
+    @Query(value = "SELECT id_element,element_name,name_location from oriun_prueba.element",
             nativeQuery = true)
-    ArrayList<Object> ListElements();
+    ArrayList<ElementBasic> ListElements();
     @Modifying
     @Query(value = "DELETE from oriun_prueba.element WHERE NAME_LOCATION=?1",
             nativeQuery = true)

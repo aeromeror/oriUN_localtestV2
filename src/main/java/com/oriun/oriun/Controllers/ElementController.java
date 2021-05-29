@@ -2,9 +2,8 @@ package com.oriun.oriun.Controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.oriun.oriun.Models.ElementoDTO;
+import com.oriun.oriun.Models.ElementBasic;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.oriun.oriun.Models.ElementModel;
@@ -29,7 +28,7 @@ public class ElementController {
         return elementService.Nelements();
     }
     @GetMapping("/Singlelmts")
-    public ArrayList<Object> singleElementos(){
+    public ArrayList<ElementBasic> singleElementos(){
         return elementService.SingleList();
     }
     @GetMapping("/MyElement")
