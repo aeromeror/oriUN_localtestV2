@@ -28,8 +28,8 @@ public class ElementController {
         return elementService.Nelements();
     }
     @GetMapping("/Singlelmts")
-    public ArrayList<ElementBasic> singleElementos(){
-        return elementService.SingleList();
+    public ArrayList<ElementBasic> singleElementos(@RequestParam("init") int init,@RequestParam("size")int size){
+        return elementService.SingleList(init,size);
     }
     @GetMapping("/MyElement")
     public ElementModel miElemento(@RequestParam("id") int id){

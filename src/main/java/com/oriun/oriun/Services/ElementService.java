@@ -202,7 +202,9 @@ public class ElementService {
     public long Nelements(){
         return elementRepository.count();
     }
-    public ArrayList<ElementBasic> SingleList(){
-        return elementRepository.ListElements();
+    public ArrayList<ElementBasic> SingleList(int init,int size){
+        if(size<1)size=1000;
+        if(init<1)init=0;
+        return elementRepository.ListElements(init,size);
     }
 }

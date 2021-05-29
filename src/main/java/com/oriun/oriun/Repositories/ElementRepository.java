@@ -34,9 +34,9 @@ public interface ElementRepository extends JpaRepository<ElementModel,Integer>{
     @Query(value = "SELECT * FROM oriun_prueba.element WHERE AVAILABLE=TRUE LIMIT ?1,?2",
             nativeQuery = true)
     ArrayList<ElementModel> findAvailables(int init,int size);
-    @Query(value = "SELECT id_element,element_name,name_location from oriun_prueba.element",
+    @Query(value = "SELECT id_element,element_name,name_location,name_sport from oriun_prueba.element LIMIT ?1,?2",
             nativeQuery = true)
-    ArrayList<ElementBasic> ListElements();
+    ArrayList<ElementBasic> ListElements(int init,int size);
     @Modifying
     @Query(value = "DELETE from oriun_prueba.element WHERE NAME_LOCATION=?1",
             nativeQuery = true)
