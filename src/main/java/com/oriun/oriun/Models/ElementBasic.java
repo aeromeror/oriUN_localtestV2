@@ -10,6 +10,8 @@ public interface ElementBasic {
     String getELEMENT_NAME();
     String getNAME_LOCATION();
     String getNAME_SPORT();
+    boolean isAVAILABLE();
+    String getDESCRIPTION();
     /*private int ID_ELEMENT;
     private String ELEMENT_NAME;
     private String NAME_LOCATION;
