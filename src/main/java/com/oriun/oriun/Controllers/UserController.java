@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.oriun.oriun.Models.ElementBasic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -207,7 +208,7 @@ public class UserController {
 
     }
 
-    @PutMapping("/banuser")
+    @PutMapping("/disuser")
 	public ResponseEntity  Stopuser(@RequestParam("user")String username){
 		if(userService.disUser(username)){
 			return new ResponseEntity<>("Usuario desactivado",
@@ -218,12 +219,32 @@ public class UserController {
 					HttpStatus.NOT_FOUND );
 		}
 	}
-
-
-
-
-
-
+	@PutMapping("/banuser")
+	public ResponseEntity  banuser(@RequestParam("user")String username){
+		if(userService.banUser(username)){
+			return new ResponseEntity<>(username+" recibio un baneo",
+					HttpStatus.OK );
+		}
+		else{
+			return new ResponseEntity<>("Usuario no encontrado",
+					HttpStatus.NOT_FOUND );
+		}
+	}
+	@PutMapping("/opuuser")
+	public ResponseEntity  chanceuser(@RequestParam("user")String username){
+		if(userService.chanceUser(username)){
+			return new ResponseEntity<>(username+" tiene un strike menos",
+					HttpStatus.OK );
+		}
+		else{
+			return new ResponseEntity<>("Usuario no encontrado",
+					HttpStatus.NOT_FOUND );
+		}
+	}
+	@GetMapping("/Usersba")
+	public List<String> UsersBanned(@RequestParam("init") int init, @RequestParam("size")int size){
+		return userService.UsersBanned(init,size);
+	}
 
 
 	//aca el mio

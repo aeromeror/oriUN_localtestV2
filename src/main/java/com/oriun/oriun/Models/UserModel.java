@@ -1,5 +1,6 @@
 package com.oriun.oriun.Models;
 
+import java.sql.Date;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -25,6 +26,10 @@ public class UserModel {
     private String EMAIL;
 
     private boolean ENABLED;
+
+    private int NBANNED;
+
+    private Date LAST_BAN;
 
     public String getEMAIL() {
         return this.EMAIL;
@@ -76,7 +81,20 @@ public class UserModel {
     public void setPASSWORD(String PASSWORD) {
         this.PASSWORD = PASSWORD;
     }
-    
-    
-    
+
+    public int getNBANNED() {
+        return NBANNED;
+    }
+
+    public void setNBANNED(int NBANNED) {
+        this.NBANNED = NBANNED;
+    }
+
+    public Date getLAST_BAN() {
+        return LAST_BAN;
+    }
+
+    public void setLAST_BAN(Date LAST_BAN) {
+        this.LAST_BAN = LAST_BAN;
+    }
 }

@@ -1,5 +1,6 @@
 package com.oriun.oriun.Services;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 
@@ -50,5 +51,28 @@ public class UserService {
             return (userRepository.disableUserState(userid)>0);
         }
         return false;
+    }
+    public boolean banUser(String userid){
+        if(userid!=null && userRepository.existsById(userid)){
+            return (userRepository.bannedUserState(userid)>0);
+        }
+        return false;
+    }
+    public boolean chanceUser(String userid){
+        if(userid!=null && userRepository.existsById(userid)){
+            return (userRepository.chanceUser(userid)>0);
+        }
+        return false;
+    }
+    public boolean Userisbanned(String userid){
+        if(userid!=null && userRepository.existsById(userid)){
+            return (userRepository.UserisBanned(userid).size()>0);
+        }
+        return false;
+    }
+    public List<String> UsersBanned(int init,int size){
+        if(size<1)size=1000;
+        if(init<1)init=0;
+        return userRepository.UsersBanned(init,size);
     }
 }

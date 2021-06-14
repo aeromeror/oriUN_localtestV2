@@ -23,4 +23,18 @@ public interface UserRepository extends JpaRepository<UserModel,String>{
   @Query(value = "UPDATE oriun_prueba.user SET ENABLED = 0 WHERE USER_NAME= ?1",
           nativeQuery = true)
   int disableUserState(String user_name);
+  @Modifying
+  @Query(value = "UPDATE oriun_prueba.user SET NBANNED = NBANNED+1, LAST_BAN=curdate() WHERE USER_NAME= ?1",
+          nativeQuery = true)
+  int bannedUserState(String user_name);
+  @Modifying
+  @Query(value = "UPDATE oriun_prueba.user SET NBANNED = NBANNED-1 WHERE USER_NAME= ?1",
+          nativeQuery = true)
+  int chanceUser(String user_name);
+  @Query(value = "SELECT USER_NAME FROM oriun_prueba.user  WHERE USER_NAME= ?1 AND (NBANNED>2 OR (NBANNED>0 AND LAST_BAN =curdate())) LIMIT 1",
+          nativeQuery = true)
+  List<String> UserisBanned(String user_name);
+  @Query(value = "SELECT USER_NAME FROM oriun_prueba.user  WHERE NBANNED>2 OR (NBANNED>0 AND LAST_BAN =curdate()) LIMIT ?1,?2",
+          nativeQuery = true)
+  List<String> UsersBanned(int init,int size);
 }
