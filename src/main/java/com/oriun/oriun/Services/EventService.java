@@ -159,4 +159,8 @@ public class EventService {
         }
         return false;
     }
+    public Boolean EventosSimi(String loc,String sport, Date date,Time time){
+        if(eventRepository.findSimilarEvents(loc,sport,date,time).size()>0)return false;
+        else return true;
+    }
 }

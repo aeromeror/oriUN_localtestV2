@@ -1,5 +1,6 @@
 package com.oriun.oriun.Controllers;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -213,6 +214,13 @@ public class EventController {
     @DeleteMapping("/NoEvent")
     public void borrarEvento(@RequestParam("id_event") int id_event){
         eventService.adiosEvent(id_event);
+    }
+    @GetMapping("/simievent")
+    public ResponseEntity simievento(@RequestParam("location") String loc,@RequestParam("sport") String sport,@RequestParam("date") Date date,@RequestParam("time") Time time){
+        if(eventService.EventosSimi(loc,sport,date,time))return new ResponseEntity<>("Evento sin conflictos",
+                HttpStatus.OK );
+        else return new ResponseEntity<>("Ya hay uno o mas eventos del mismo deporte, en la misma ubicacion, a la misma hora y dia indicado",
+                HttpStatus.CONFLICT );
     }
 
 }

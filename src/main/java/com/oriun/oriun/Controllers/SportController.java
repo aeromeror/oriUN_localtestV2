@@ -45,7 +45,6 @@ public class SportController {
         }
         return null;
     }
-    //Revisar estabilidad de borrado en cascada
     @DeleteMapping("/nosports")
     public ResponseEntity borrarDeporte(@RequestParam("sport") String sport){
         if(sportService.existSport(sport)){
