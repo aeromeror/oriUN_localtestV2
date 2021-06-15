@@ -161,20 +161,26 @@ public class UserController {
 		System.out.println(pass);
 		if(us.isPresent()){
 			if(us.get().isENABLED()){
-				String token = getJWTToken(user.get("user_name").toString());
-				if(us.get().getPASSWORD().equals(pass)){ 
-									HashMap <String,Object> result= new HashMap();
-									result.put("TOKEN",token);
-									result.put("USER_NAME",us.get().getUSER_NAME()); 
-									result.put("ROL_NAME",us.get().getROL_NAME());
-					return new ResponseEntity<>(
-											result, HttpStatus.OK);
-					//return us.get();
-				}else{
-					//throw new MyException("wrong password");
-					throw new ResponseStatusException(
-					HttpStatus.NOT_FOUND, "invalid password");
-				}
+			    if(userService.Userisbanned(us.get().getUSER_NAME())){
+                    throw new ResponseStatusException(
+                            HttpStatus.NOT_ACCEPTABLE, "usuario baneado");
+                }
+			    else {
+                    String token = getJWTToken(user.get("user_name").toString());
+                    if (us.get().getPASSWORD().equals(pass)) {
+                        HashMap<String, Object> result = new HashMap();
+                        result.put("TOKEN", token);
+                        result.put("USER_NAME", us.get().getUSER_NAME());
+                        result.put("ROL_NAME", us.get().getROL_NAME());
+                        return new ResponseEntity<>(
+                                result, HttpStatus.OK);
+                        //return us.get();
+                    } else {
+                        //throw new MyException("wrong password");
+                        throw new ResponseStatusException(
+                                HttpStatus.NOT_FOUND, "invalid password");
+                    }
+                }
 			}else{
 				throw new ResponseStatusException(
 					HttpStatus.NOT_FOUND, "User is Not authenticated");
