@@ -159,8 +159,9 @@ public class EventService {
         }
         return false;
     }
-    public Boolean EventosSimi(String loc,String sport, Date date,Time time){
-        if(eventRepository.findSimilarEvents(loc,sport,date,time).size()>0)return false;
+    public Boolean EventosSimi(String loc,String sport, Date datei,Time timei, Date datee,Time timee){
+        //Timestamp ts=new Timestamp(datei.getTime()+timei.getTime());
+        if(eventRepository.findSimilarEvents(loc,sport,datei,timei,datee,timee).size()>0)return false;
         else return true;
     }
 }

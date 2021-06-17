@@ -51,9 +51,9 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     @Query(value = "SELECT id_event,event_init,event_init_hour,event_end,event_finish_hour,name_loc_sport FROM oriun_prueba.event  WHERE event_init>= ?1 AND event_init<= ?2 ORDER BY event_init,event_init_hour",
             nativeQuery = true)
     List<Object>findWeekEvents(Date date,Date enddate);
-    @Query(value = "SELECT id_event FROM oriun_prueba.event  WHERE name_loc_sport=?1 AND name_sport=?2 AND event_init= ?3 AND event_init_hour=?4 LIMIT 1",
+    @Query(value = "SELECT id_event FROM oriun_prueba.event  WHERE name_loc_sport=?1 AND name_sport=?2 AND ((TIMESTAMP(event_end,event_finish_hour) BETWEEN TIMESTAMP(?3,?4) AND TIMESTAMP(?5,?6)) OR (TIMESTAMP(event_init,event_init_hour) BETWEEN TIMESTAMP(?3,?4) AND TIMESTAMP(?5,?6)) OR (TIMESTAMP(?3,?4) BETWEEN TIMESTAMP(event_init,event_init_hour) AND TIMESTAMP(event_end,event_finish_hour))) LIMIT 1",
             nativeQuery = true)
-    List<Integer> findSimilarEvents(String loc, String sport, Date date,Time time);
+    List<Integer> findSimilarEvents(String loc, String sport, Date datei,Time timei, Date datee,Time timee);
     /*@Query(value = "SELECT * FROM oriun_prueba.event  WHERE event_title= "+event_t,
             nativeQuery = true)
     List<String>findByEvent_title(String event_t);*/

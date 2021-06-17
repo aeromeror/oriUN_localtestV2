@@ -216,8 +216,8 @@ public class EventController {
         eventService.adiosEvent(id_event);
     }
     @GetMapping("/simievent")
-    public ResponseEntity simievento(@RequestParam("location") String loc,@RequestParam("sport") String sport,@RequestParam("date") Date date,@RequestParam("time") Time time){
-        if(eventService.EventosSimi(loc,sport,date,time))return new ResponseEntity<>("Evento sin conflictos",
+    public ResponseEntity simievento(@RequestParam("location") String loc,@RequestParam("sport") String sport,@RequestParam("datei") Date datei,@RequestParam("timei") Time timei,@RequestParam("datee") Date datee,@RequestParam("timee") Time timee){
+        if(eventService.EventosSimi(loc,sport,datei,timei,datee,timee))return new ResponseEntity<>("Evento sin conflictos",
                 HttpStatus.OK );
         else return new ResponseEntity<>("Ya hay uno o mas eventos del mismo deporte, en la misma ubicacion, a la misma hora y dia indicado",
                 HttpStatus.CONFLICT );
