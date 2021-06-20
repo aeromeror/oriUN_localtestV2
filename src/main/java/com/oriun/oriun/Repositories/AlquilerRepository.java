@@ -15,4 +15,7 @@ public interface AlquilerRepository extends JpaRepository<AlquilerModel,Integer>
     @Query(value = "SELECT * FROM oriun_prueba.alquiler WHERE id_element=?1 AND rent_date=?2",
             nativeQuery = true)
     List<AlquilerModel> LAfechaElemento(int ide, Date rdate);
+    @Query(value = "SELECT * FROM oriun_prueba.alquiler WHERE user_name=?1",
+            nativeQuery = true)
+    List<AlquilerModel> LAbyUser(String usern);
 }
