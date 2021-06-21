@@ -34,8 +34,14 @@ public class AlquilerService {
                 am.setRENT_DATE(sqlDate);
                 /*return new ResponseEntity<>(ram.getUSER_NAME()+" reservo elemento con id: "+Integer.toString(ram.getID_ELEMENT())+" , para el dia: "+ ram.getRENT_DATE().toString(),
                         HttpStatus.OK );*/
-                return new ResponseEntity<>(alquilerRepository.save(am),
-                        HttpStatus.OK );
+                if(alquilerRepository.LAfechaElemento(am.getID_ELEMENT(), am.getRENT_DATE()).size()==0){
+                    return new ResponseEntity<>(alquilerRepository.save(am),
+                            HttpStatus.OK );
+                }
+                else{
+                    return new ResponseEntity<>("Elemento reservado para esa fecha",
+                            HttpStatus.CONFLICT );
+                }
             }
             else{
                 return new ResponseEntity<>("Id de elemento no valido",
@@ -62,5 +68,11 @@ public class AlquilerService {
     }
     public List<AlquilerModel> LAbyUser(String usern){
         return alquilerRepository.LAbyUser(usern);
+    }
+    public List<AlquilerModel> LAbyDate(Date rdate){
+        return alquilerRepository.LAbyDate(rdate);
+    }
+    public List<AlquilerModel> LAbyElemento(int ide){
+        return alquilerRepository.LAbyElemento(ide);
     }
 }

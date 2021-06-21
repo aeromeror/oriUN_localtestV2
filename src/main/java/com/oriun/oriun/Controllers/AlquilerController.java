@@ -46,4 +46,12 @@ public class AlquilerController {
     public List<AlquilerModel> LAUser(@RequestParam("user") String user){
         return alquilerService.LAbyUser(user);
     }
+    @GetMapping("/laRdate")
+    public List<AlquilerModel> LARdate(@RequestParam("r_date") Date rdate){
+        return alquilerService.LAbyDate(rdate);
+    }
+    @GetMapping("/laElem")
+    public List<AlquilerModel> LAElem(@RequestParam("id_ele") int ide){
+        return alquilerService.LAbyElemento(ide);
+    }
 }
