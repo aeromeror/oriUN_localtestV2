@@ -135,6 +135,12 @@ public class EventController {
         return userevents;
     }
 
+    @GetMapping("/userassistanceevents")
+    public List<EventModel> obtenerEventosUsuarioAsistencia(@RequestParam("user") String user_name){
+        List< EventModel> userevents = eventService.getUserAsistanceEvents(user_name);
+        return userevents;
+    }
+
     @GetMapping("/others")
     public List<EventModel> obtenerOthers(){
         return eventService.getOtherEvents();
@@ -188,6 +194,7 @@ public class EventController {
         return new ResponseEntity<>("Usuario o evento no existentes",
                 HttpStatus.BAD_REQUEST );
     }
+
     @DeleteMapping("/LeaveEvent")
     public ResponseEntity abandonarevento(@RequestParam("id_user") String username, @RequestParam("id_event") int id_eve){
         if(eventService.existEvent(id_eve) && userService.existUser(username)){
@@ -211,10 +218,12 @@ public class EventController {
         return new ResponseEntity<>("Evento o Usuario inexistentes",
                 HttpStatus.NOT_FOUND );
     }
+
     @DeleteMapping("/NoEvent")
     public void borrarEvento(@RequestParam("id_event") int id_event){
         eventService.adiosEvent(id_event);
     }
+
     @GetMapping("/simievent")
     public ResponseEntity simievento(@RequestParam("location") String loc,@RequestParam("sport") String sport,@RequestParam("datei") Date datei,@RequestParam("timei") Time timei,@RequestParam("datee") Date datee,@RequestParam("timee") Time timee){
         if(eventService.EventosSimi(loc,sport,datei,timei,datee,timee))return new ResponseEntity<>("Evento sin conflictos",

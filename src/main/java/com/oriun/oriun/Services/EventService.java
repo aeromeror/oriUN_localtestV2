@@ -164,4 +164,7 @@ public class EventService {
         if(eventRepository.findSimilarEvents(loc,sport,datei,timei,datee,timee).size()>0)return false;
         else return true;
     }
+    public List<EventModel> getUserAsistanceEvents(String user_name) {
+        return eventRepository.findUserEventsAsist(user_name);
+    }
 }

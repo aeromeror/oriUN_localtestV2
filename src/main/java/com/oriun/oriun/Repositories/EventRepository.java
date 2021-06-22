@@ -36,7 +36,12 @@ public interface EventRepository extends JpaRepository<EventModel,Integer>{
     @Query(value = "UPDATE oriun_prueba.event SET name_loc_sport=?2,name_sport=?3,event_description=?4,event_init=?5,event_end=?6,capacity=?7,other_sport=?8,event_init_hour=?9,event_finish_hour=?10,event_title=?11 WHERE id_event=?1"
             , nativeQuery = true)//user_name=?12,
     void updatebyID(int id_event, String name_loc_sport, String nsport, String edescription, Date event_i, Date event_e, double cap, String Oth_sport, Time eih,Time efh,String event_title);//, String user_name
-    @Query(value = "SELECT oriun_prueba.event.* FROM oriun_prueba.user_event inner join oriun_prueba.event ON oriun_prueba.event.id_event = oriun_prueba.user_event.id_event where oriun_prueba.user_event.user_name=?1 and (event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time()))",
+    
+    @Query(value = "SELECT oriun_prueba.event.* FROM oriun_prueba.user_event inner join oriun_prueba.event ON oriun_prueba.event.id_event = oriun_prueba.user_event.id_event where oriun_prueba.user_event.user_name=?1 and oriun_prueba.event.user_name!=?1 and (event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time()))",
+            nativeQuery = true)
+    List<EventModel>findUserEventsAsist(String user_name);
+
+    @Query(value = "SELECT * FROM oriun_prueba.event  where oriun_prueba.event.user_name=?1 and (event_init>current_date() OR (event_init=current_date() AND event_init_hour>current_time()))",
             nativeQuery = true)
     List<EventModel>findUserEvents(String user_name);
     @Modifying
