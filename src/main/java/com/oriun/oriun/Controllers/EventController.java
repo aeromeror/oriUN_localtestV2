@@ -181,15 +181,23 @@ public class EventController {
             Optional<EventModel> oem=eventService.getEventById(id_eve);
             double ec=oem.get().getCAPACITY();
             double len_asis_event=user_eventService.getUser_eventbyEvent(id_eve).size();
-            if(len_asis_event<ec && !user_eventService.UserinEvent(id_eve,username)){
-                asistencia.setID_EVENT(id_eve);
-                asistencia.setUSER_NAME(username);
-                user_eventService.saveUser_event(asistencia);
-                return new ResponseEntity<>(username+" ahora asiste a "+oem.get().getEVENT_TITLE(),
-                        HttpStatus.OK );
+            if(len_asis_event<ec){
+                if(!user_eventService.UserinEvent(id_eve,username)) {
+                    asistencia.setID_EVENT(id_eve);
+                    asistencia.setUSER_NAME(username);
+                    user_eventService.saveUser_event(asistencia);
+                    return new ResponseEntity<>(username + " ahora asiste a " + oem.get().getEVENT_TITLE(),
+                            HttpStatus.OK);
+                }
+                else {
+                    return new ResponseEntity<>("El usuario ya esta en el evento",
+                            HttpStatus.INSUFFICIENT_STORAGE);
+                }
             }
-            return new ResponseEntity<>("Limite de asistencia",
-                    HttpStatus.INSUFFICIENT_STORAGE );
+            else {
+                return new ResponseEntity<>("Limite de asistencia",
+                        HttpStatus.INSUFFICIENT_STORAGE);
+            }
         }
         return new ResponseEntity<>("Usuario o evento no existentes",
                 HttpStatus.BAD_REQUEST );

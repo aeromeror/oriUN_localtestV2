@@ -43,7 +43,7 @@ public class AlquilerController {
         return alquilerService.LAfechaElemento(ide,rdate);
     }
     @GetMapping("/laUser")
-    public List<AlquilerModel> LAUser(@RequestParam("user") String user){
+    public List<AlqElem> LAUser(@RequestParam("user") String user){
         return alquilerService.LAbyUser(user);
     }
     @GetMapping("/laRdate")

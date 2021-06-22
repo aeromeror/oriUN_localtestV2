@@ -15,9 +15,9 @@ public interface AlquilerRepository extends JpaRepository<AlquilerModel,Integer>
     @Query(value = "SELECT * FROM oriun_prueba.alquiler WHERE id_element=?1 AND rent_date=?2",
             nativeQuery = true)
     List<AlquilerModel> LAfechaElemento(int ide, Date rdate);
-    @Query(value = "SELECT * FROM oriun_prueba.alquiler WHERE user_name=?1",
+    @Query(value = "SELECT rent_date, id_rent,user_name,element.* FROM oriun_prueba.alquiler LEFT JOIN element ON alquiler.id_element=element.id_element WHERE user_name=?1",
             nativeQuery = true)
-    List<AlquilerModel> LAbyUser(String usern);
+    List<AlqElem> LAbyUser(String usern);
     @Query(value = "SELECT * FROM oriun_prueba.alquiler WHERE rent_date=?1",
             nativeQuery = true)
     List<AlquilerModel> LAbyDate(Date rdate);

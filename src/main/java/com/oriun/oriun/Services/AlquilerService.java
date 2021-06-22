@@ -66,7 +66,7 @@ public class AlquilerService {
     public List<AlquilerModel> LAfechaElemento(int ide, Date rdate){
         return alquilerRepository.LAfechaElemento(ide,rdate);
     }
-    public List<AlquilerModel> LAbyUser(String usern){
+    public List<AlqElem> LAbyUser(String usern){
         return alquilerRepository.LAbyUser(usern);
     }
     public List<AlquilerModel> LAbyDate(Date rdate){
