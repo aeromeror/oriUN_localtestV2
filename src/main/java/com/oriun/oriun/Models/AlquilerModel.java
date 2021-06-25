@@ -2,6 +2,7 @@ package com.oriun.oriun.Models;
 import javax.persistence.*;
 import javax.persistence.Id;
 import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Table(name = "alquiler")
@@ -15,6 +16,9 @@ public class AlquilerModel {
     private String USER_NAME;
     private int ID_ELEMENT;
     private Date RENT_DATE;
+    private Time RENT_TIME;
+    private Time RENT_DURATION;
+
 
     public AlquilerModel(int id_rent, String user_name, int id_element, Date rent_date) {
         this.ID_RENT = id_rent;
@@ -25,6 +29,22 @@ public class AlquilerModel {
     public AlquilerModel() {
     }
 
+    public Time getRENT_TIME() {
+        return this.RENT_TIME;
+    }
+
+    public void setRENT_TIME(Time RENT_TIME) {
+        this.RENT_TIME = RENT_TIME;
+    }
+
+    public Time getRENT_DURATION() {
+        return this.RENT_DURATION;
+    }
+
+    public void setRENT_DURATION(Time RENT_DURATION) {
+        this.RENT_DURATION = RENT_DURATION;
+    }
+    
     public Integer getID_RENT() {
         return ID_RENT;
     }

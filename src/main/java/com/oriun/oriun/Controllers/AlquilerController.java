@@ -23,6 +23,7 @@ public class AlquilerController {
     }
     @PostMapping("/gAlquiler")
     public ResponseEntity RegAlquiler(@RequestBody AlquilerModel am){
+        
         return alquilerService.registraralquiler(am);
     }
     @DeleteMapping("/noAlquiler")
