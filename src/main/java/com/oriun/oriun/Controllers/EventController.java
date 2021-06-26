@@ -191,7 +191,7 @@ public class EventController {
                 }
                 else {
                     return new ResponseEntity<>("El usuario ya esta en el evento",
-                            HttpStatus.INSUFFICIENT_STORAGE);
+                            HttpStatus.CONFLICT);
                 }
             }
             else {
