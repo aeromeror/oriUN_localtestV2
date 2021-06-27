@@ -20,11 +20,13 @@ public class AlquilerModel {
     private Time RENT_DURATION;
 
 
-    public AlquilerModel(int id_rent, String user_name, int id_element, Date rent_date) {
-        this.ID_RENT = id_rent;
-        this.USER_NAME = user_name;
-        this.ID_ELEMENT = id_element;
-        this.RENT_DATE = rent_date;
+    public AlquilerModel(Integer ID_RENT, String USER_NAME, int ID_ELEMENT, Date RENT_DATE, Time RENT_TIME, Time RENT_DURATION) {
+        this.ID_RENT = ID_RENT;
+        this.USER_NAME = USER_NAME;
+        this.ID_ELEMENT = ID_ELEMENT;
+        this.RENT_DATE = RENT_DATE;
+        this.RENT_TIME = RENT_TIME;
+        this.RENT_DURATION = RENT_DURATION;
     }
     public AlquilerModel() {
     }
@@ -32,7 +34,6 @@ public class AlquilerModel {
     public Time getRENT_TIME() {
         return this.RENT_TIME;
     }
-
     public void setRENT_TIME(Time RENT_TIME) {
         this.RENT_TIME = RENT_TIME;
     }
@@ -40,7 +41,6 @@ public class AlquilerModel {
     public Time getRENT_DURATION() {
         return this.RENT_DURATION;
     }
-
     public void setRENT_DURATION(Time RENT_DURATION) {
         this.RENT_DURATION = RENT_DURATION;
     }
