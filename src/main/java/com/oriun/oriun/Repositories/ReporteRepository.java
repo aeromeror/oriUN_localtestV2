@@ -25,7 +25,7 @@ public interface ReporteRepository extends JpaRepository<ReporteModel,Integer> {
             , nativeQuery = true)
     List<EventModel> findallWithEvent();*/
 
-    @Query(value = "SELECT event.*,COUNT(*) FROM oriun_prueba.reporte left join event on reporte.id_event=event.id_event GROUP BY reporte.id_event"
+    @Query(value = "SELECT event.*,COUNT(*) as count FROM oriun_prueba.reporte left join event on reporte.id_event=event.id_event GROUP BY reporte.id_event"
             , nativeQuery = true)
     List<ReporteEvent> findallWithEvent();
 }
