@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public interface ReporteEvent {
-    //Integer getID_EVENT();
+    Integer getID_EVENT();
     String getUSER_NAME();
     String getNAME_LOC_SPORT();
     String getNAME_SPORT();
@@ -17,5 +17,5 @@ public interface ReporteEvent {
     Time getEVENT_FINISH_HOUR();
     String getEVENT_TITLE();
     Date getCREATION_DATE();
-    int Count();
+    int COUNT();
 }
