@@ -238,6 +238,15 @@ public class UserController {
 	@PutMapping("/opuuser")
 	public ResponseEntity  chanceuser(@RequestParam("user")String username){
 		if(userService.chanceUser(username)){
+			Optional<UserModel> us=userService.getUser(username);
+			UserModel us2 = us.get();
+			SimpleMailMessage mailMessage = new SimpleMailMessage();
+			mailMessage.setTo(us2.getEMAIL());
+			mailMessage.setSubject("Strike reduction!");
+			mailMessage.setFrom("oriunmail@gmail.com");
+			String content=("Su cuenta ahora tiene "+us2.getNBANNED()+" strikes, si tiene menos de 3 strikes su baneo es de maximó 24 horas");
+			mailMessage.setText(content);
+			emailSenderService.sendEmail(mailMessage);
 			return new ResponseEntity<>(username+" tiene un strike menos",
 					HttpStatus.OK );
 		}
