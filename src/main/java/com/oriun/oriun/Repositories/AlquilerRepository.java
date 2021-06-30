@@ -2,10 +2,12 @@ package com.oriun.oriun.Repositories;
 
 import com.oriun.oriun.Models.AlqElem;
 import com.oriun.oriun.Models.AlquilerModel;
+import com.oriun.oriun.Models.User_eventModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 public interface AlquilerRepository extends JpaRepository<AlquilerModel,Integer> {
@@ -24,4 +26,8 @@ public interface AlquilerRepository extends JpaRepository<AlquilerModel,Integer>
     @Query(value = "SELECT * FROM oriun_prueba.alquiler WHERE id_element=?1",
             nativeQuery = true)
     List<AlquilerModel> LAbyElemento(int ide);
+    
+    @Query(value = "SELECT * FROM oriun_prueba.alquiler  WHERE ID_ELEMENT = ?4 AND RENT_DATE = ?1 AND (RENT_TIME BETWEEN ?2 AND ?3 OR RENT_DURATION BETWEEN ?2 AND ?3 )",
+            nativeQuery = true)
+    List<AlquilerModel>IsRented(Date rdate,Time itime, Time ftime, int id_elem);
 }
