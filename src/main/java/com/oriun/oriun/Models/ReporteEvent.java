@@ -18,4 +18,5 @@ public interface ReporteEvent {
     String getEVENT_TITLE();
     Date getCREATION_DATE();
     int COUNT();
+    long getCount();
 }
