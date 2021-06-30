@@ -207,4 +207,8 @@ public class ElementService {
         if(init<1)init=0;
         return elementRepository.ListElements(init,size);
     }
+    
+    public Boolean existElement(int eleid){
+        return elementRepository.existsById(eleid);
+    }
 }

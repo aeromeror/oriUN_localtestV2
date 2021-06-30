@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -75,4 +77,16 @@ public class AlquilerService {
     public List<AlquilerModel> LAbyElemento(int ide){
         return alquilerRepository.LAbyElemento(ide);
     }
+    
+    public boolean IsUsed(Date rdate,Time itime, int interv, int id_elem){
+        LocalTime localtime = itime.toLocalTime();
+        localtime = localtime.plusMinutes(interv);
+        Time ftime = Time.valueOf( localtime );
+        return !(alquilerRepository.IsRented(rdate, itime, ftime, id_elem).size()==0);
+    }
+    public AlquilerModel saveAlquiler(AlquilerModel user_alquiler){
+        return alquilerRepository.save(user_alquiler);
+    }
+    
+    
 }
