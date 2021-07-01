@@ -1,6 +1,5 @@
 package com.oriun.oriun.Repositories;
 
-import com.oriun.oriun.Models.EventModel;
 import com.oriun.oriun.Models.ReporteModel;
 import com.oriun.oriun.Models.ReporteEvent;
 import org.springframework.data.jpa.repository.JpaRepository;

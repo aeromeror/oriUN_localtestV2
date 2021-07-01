@@ -17,6 +17,5 @@ public interface ReporteEvent {
     Time getEVENT_FINISH_HOUR();
     String getEVENT_TITLE();
     Date getCREATION_DATE();
-    int COUNT();
     long getCount();
 }
