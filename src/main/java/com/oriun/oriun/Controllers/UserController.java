@@ -67,6 +67,7 @@ public class UserController {
 		user.setPASSWORD((encoder.encode(password)));
 		System.out.println(user.getPASSWORD());
 		user.setUSER_NAME(user_name);
+		user.setEMAIL("creadoporapp");
 		user.setROL_NAME("Moderador");
 		Optional<UserModel> us=userService.getUser(user_name);
 		if(us.isPresent()){
