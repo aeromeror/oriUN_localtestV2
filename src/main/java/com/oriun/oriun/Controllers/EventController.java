@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.oriun.oriun.Models.EventModel;
 import com.oriun.oriun.Models.NotificationModel;
-import com.oriun.oriun.Models.SportModel;
 import com.oriun.oriun.Models.User_eventModel;
 import com.oriun.oriun.Services.EventService;
 import com.oriun.oriun.Services.NotificationService;
-import com.oriun.oriun.Services.SportService;
 import com.oriun.oriun.Services.User_eventService;
 @RestController
 //@RequestMapping("/sports")
@@ -40,25 +38,6 @@ public class EventController {
 
     @GetMapping("/events")
     public ArrayList<EventModel> obtenerEventosVigentes(@RequestParam("init") int init,@RequestParam("size")int size){
-        /*java.util.Date d1 = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(d1.getTime());
-        ArrayList<EventModel> ev=eventService.getEvents();
-        EventModel etemp=new EventModel();
-        for (int i = 0; i < ev.size(); i++) {
-            etemp=ev.get(i);
-            //if(etemp.getEVENT_FINISH_HOUR().before(sqlDate)){
-            //    borrarevento(etemp.getID_EVENT());
-            //    ev.remove(i);
-            //    i--;
-            //}
-            //else
-            if(etemp.getEVENT_INIT().before(sqlDate)){
-                ev.remove(i);
-                //System.out.println("Evento ya iniciado: "+etemp.getEVENT_TITLE());
-                i--;
-            }
-        }
-        return ev;*/
         return eventService.getEventVigentes(init, size);
     }
     @GetMapping("/nevents")
@@ -84,7 +63,7 @@ public class EventController {
                 notification.setNOTIFICATION_DATE(ev.getEVENT_INIT());
                 notification.setTIME_NOTIFICATION(ev.getEVENT_INIT_HOUR());
                 notification.setEXPIRATION_TIME(ev.getEVENT_FINISH_HOUR());
-                notification.setNOTIFICATION_DESCRIPTION("A brand new event is coming : "+ev.getEVENT_TITLE());
+                notification.setNOTIFICATION_DESCRIPTION("Un nuevo evento se acerca : "+ev.getEVENT_TITLE());
                 notificationService.saveNotification(notification);
                 return ev;
             }
@@ -156,24 +135,6 @@ public class EventController {
     public List<String> obtenerOtherSports(){
         return eventService.getOtherSports();
     }
-    //Borrar llamado ya existe con una mejor implementacion↓
-    /*@DeleteMapping("/event")
-    public EventModel borrarevento(@RequestParam("event") int event_id){
-        ArrayList<User_eventModel> usev=user_eventService.getallUser_events();
-        for(int c=0;c<usev.size();c++){
-            User_eventModel ev=usev.get(c);
-            if(ev.getID_EVENT()==event_id){
-                user_eventService.deleteUserEvent(ev);
-            }
-        }
-        Optional<EventModel> ev = eventService.getEventById(event_id);
-        if(ev.isPresent()){
-            eventService.deleteEvent(ev.get());
-            return ev.get();
-        }else{
-            return null;
-        }
-    }*/
     @PostMapping("/asistirevent")
     public ResponseEntity asistirevento(@RequestParam("id_user") String username,@RequestParam("id_event") int id_eve){
         if(eventService.existEvent(id_eve) && userService.existUser(username)){

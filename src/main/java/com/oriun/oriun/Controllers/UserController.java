@@ -99,12 +99,12 @@ public class UserController {
 		UserModel us2 = userService.getUserByEmail(email);
 		if(us.isPresent()){
 			return new ResponseEntity<>(
-			"your user name is alredy taken "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+			"Este nombre ya esta en uso: "+user.getUSER_NAME()+" rol: "+user.getROL_NAME(),
 			HttpStatus.UNPROCESSABLE_ENTITY);
 		}else{
 			if(us2 != null){
 				return new ResponseEntity<>(
-			"your email is alredy registereg "+email+" role"+user.getROL_NAME(), 
+			"Tu correo ha sido registrado: "+email+"rol: "+user.getROL_NAME(),
 			HttpStatus.UNPROCESSABLE_ENTITY);
 			}else{
 				UserModel res=userService.saveUser(user);
@@ -122,7 +122,7 @@ public class UserController {
 				//+"https://oriun.herokuapp.com/confirm-account?token="+confirmationToken.getCONFIRMATION_TOKEN());
 				emailSenderService.sendEmail(mailMessage);
 				return new ResponseEntity<>(
-					"your user register is succesfull "+user.getUSER_NAME()+" role"+user.getROL_NAME(), 
+					"Su registro es exitoso "+user.getUSER_NAME()+" rol: "+user.getROL_NAME(),
 					HttpStatus.OK);
 			}
 		}

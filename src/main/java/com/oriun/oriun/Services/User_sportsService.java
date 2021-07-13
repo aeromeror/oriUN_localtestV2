@@ -28,5 +28,4 @@ public class User_sportsService {
         /*return new ResponseEntity<>(
                                          HttpStatus.OK);*/
     }
-   
 }
