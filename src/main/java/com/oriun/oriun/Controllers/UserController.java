@@ -105,9 +105,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity register(@RequestParam("user") String user_name, @RequestParam("password") String password,@RequestParam("email") String email) {
 		UserModel user= new UserModel();
-		//user.setPASSWORD(passwordEncoder.encode(password));
-		encoder= new Encoder();
-		user.setPASSWORD((encoder.encode(password)));
+		user.setPASSWORD(passwordEncoder.encode(password));
 		user.setEMAIL(email);
 		user.setENABLED(false);
 		System.out.println(user.getPASSWORD());

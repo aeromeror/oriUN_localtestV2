@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter{
 
-    private static final String[] publicResources = new String[]{ "/registro/nuevo-usuario/**", "/roles" };
+    private static final String[] publicResources = new String[]{ "/userreg/**" };
     private static final String[] userResources = new String[]{ "/usuario/**", "/registro/nuevo-rol/**",
             "/mis-roles", "/mis-cursos" };
     private static final String[] teacherResources = new String[]{ "/profesor/**" };
