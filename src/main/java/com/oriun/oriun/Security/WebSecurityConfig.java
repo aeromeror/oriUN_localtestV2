@@ -16,11 +16,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
-@EnableWebSecurity
-@Configuration
-class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//@EnableWebSecurity
+//@Configuration
+class WebSecurityConfig  {
 
-	@Override
+	/*@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
 			/*.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -28,7 +28,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, "/userlog","/userreg").permitAll()
 			.anyRequest().authenticated();*/
             
-	}
+	//}
     /*@Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -45,7 +45,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }*/
-	@Bean
+	/*@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(12);
 	}

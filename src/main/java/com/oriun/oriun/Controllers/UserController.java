@@ -83,6 +83,24 @@ public class UserController {
 		
 	}
 
+	@PostMapping( value = { "/registro/nuevo-usuario/"} )
+    public ResponseEntity<Void> registerNewUser( @RequestParam("user") String user_name, @RequestParam("password") String password,@RequestParam("email") String email){
+        Optional<UserModel> existingUser = userService.getUser(user_name );
+        if( existingUser.isPresent()  ){
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+        }
+        UserModel user = new UserModel( );
+		System.out.println("pas"+passwordEncoder.encode(password));
+		user.setPASSWORD((passwordEncoder.encode(password)));
+		user.setEMAIL(email);
+		user.setENABLED(true);
+		System.out.println("pas"+user.getPASSWORD());
+		user.setUSER_NAME(user_name);
+		user.setROL_NAME("Usuario");
+		UserModel res= userService.saveUser(user);
+        return new ResponseEntity<>( HttpStatus.CREATED );
+    }
+
 	@PostMapping("/userreg")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity register(@RequestParam("user") String user_name, @RequestParam("password") String password,@RequestParam("email") String email) {
